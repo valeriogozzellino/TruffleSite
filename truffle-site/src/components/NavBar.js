@@ -8,16 +8,16 @@ const NavBar = () => {
         <img src={Logo} alt="Logo" className="w-fit h-40 ml-3" />
       </div>
       <div className="text-white flex flex-row justify-center font-libre">
-        <span className="flex flex-col justify-center m-5 text-2xl   hover:underline">
+        <span className="flex flex-col justify-center m-5 text-2xl   hover:underline hover:-translate-y-1">
           CACCIA AL TARTUFO
         </span>
-        <span className="flex flex-col justify-center m-5 text-2xl   hover:underline">
+        <span className="flex flex-col justify-center m-5 text-2xl   hover:underline hover:-translate-y-1 ">
           NEGOZIO
         </span>
-        <span className="flex flex-col justify-center m-5 text-2xl  hover:underline">
+        <span className="flex flex-col justify-center m-5 text-2xl  hover:underline hover:-translate-y-1">
           CHI SIAMO
         </span>
-        <span className="flex flex-col justify-center m-5 text-2xl  hover:underline">
+        <span className="flex flex-col justify-center m-5 text-2xl  hover:underline hover:-translate-y-1">
           CONTATTI
         </span>
       </div>
