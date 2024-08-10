@@ -65,7 +65,7 @@ const CarouselShop = () => {
                 onClick={toggleShowMore}>
                 {showMore ? "Mostra meno" : "Scopri di più"}
               </button>
-              <button className="colored-background-light hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 px-4 rounded">
+              <button className="colored-background-light hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 rounded">
                 ACQUISTA
               </button>
             </div>
