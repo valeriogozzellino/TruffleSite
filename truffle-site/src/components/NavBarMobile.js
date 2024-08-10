@@ -33,7 +33,7 @@ const NavBarMobile = () => {
         className={`fixed top-0 right-0 w-64 h-full bg-[rgba(122,94,75,1)] z-20 p-5 transform transition-transform duration-300 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}>
-        <div className="mt-9 w-full flex justify-end items-end">
+        <div className="mt-5 w-full flex justify-end items-end">
           <button
             className="text-white focus:outline-none"
             onClick={toggleMenu}>

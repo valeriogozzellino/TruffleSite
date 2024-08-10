@@ -18,7 +18,7 @@ const Content = () => {
             <img src={Img1} alt="Logo" className="w-full h-full rounded" />
           </div>
           <div className="w-1/2 flex flex-col justify-start items-center mt-5 ">
-            <p className="text-center text-white w-4/5">
+            <p className="text-center text-white text-xl w-4/5">
               Scoprite con noi il fascino esclusivo della ricerca al tartufo
               nelle migliori riserve delle Langhe e del Monferrato. Offriamo
               esperienze di ricerca guidata del tartufo, dove i nostri cani
@@ -43,7 +43,7 @@ const Content = () => {
         </h1>
         <div className="flex h-[600px] flex-row ">
           <div className="w-1/2 flex flex-col justify-start items-center mt-5 ">
-            <p className="text-center text-white w-4/5">
+            <p className="text-center text-white text-xl w-4/5">
               Per gli intenditori e gli appassionati, offriamo anche una
               selezione di tartufi al dettaglio, disponibili per l'acquisto
               diretto. Ogni tartufo è selezionato con cura per garantire qualità
@@ -72,7 +72,7 @@ const Content = () => {
             <img src={Img1} alt="Logo" className="w-full h-full rounded" />
           </div>
           <div className="w-1/2 flex flex-col justify-start items-center mt-5 ">
-            <p className="text-center text-white w-4/5">
+            <p className="text-center text-white text-xl w-4/5">
               Scoprite con noi il fascino esclusivo della ricerca al tartufo
               nelle migliori riserve delle Langhe e del Monferrato. Offriamo
               esperienze di ricerca guidata del tartufo, dove i nostri cani
@@ -86,7 +86,7 @@ const Content = () => {
             <button
               className="colored-background-light hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 rounded"
               onClick={handleRedirect}>
-              Scopri di più
+              SCOPRI DI PIU'
             </button>
           </div>
         </div>
