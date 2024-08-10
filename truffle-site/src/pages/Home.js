@@ -42,7 +42,12 @@ const Home = () => {
       </div>
 
       <div className="flex flex-col justify-start items-center mb-8 md:w-full">
-        <video autoPlay loop muted className="w-full h-full" src={videoCaccia}>
+        <video
+          autoPlay
+          loop
+          muted
+          className="w-full h-full mt-24 md:m-0 "
+          src={videoCaccia}>
           Your browser does not support the video tag.
         </video>
       </div>
