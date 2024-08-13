@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import NavBarMobile from "../components/NavBarMobile";
+import Footer from "../components/Footer";
 const Booked = () => {
   return (
     <div className="h-full w-full colored-background">
@@ -17,6 +18,9 @@ const Booked = () => {
         La tua prenotazione è stata registrata con successo. Ti invieremo una
         conferma via email.
       </p>
+      <div className="shadow-top mt-10 flex flex-col justify-center h-52">
+        <Footer />
+      </div>
     </div>
   );
 };

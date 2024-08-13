@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div className="h-full w-full colored-background">
       <div
-        className={`hidden md:block px-5 z-10 fixed w-full py-5 ${
+        className={`hidden md:block px-5 z-10 fixed w-full py-5 shadow ${
           backgroundFixed ? "bg-custom-brown-dark" : "bg-custom-brown-opacity"
         }`}>
         <NavBar current={"/"} />
@@ -63,7 +63,9 @@ const Home = () => {
       <div className="flex flex-row justify-center">
         <Contact />
       </div>
-      <Footer />
+      <div className="shadow-top mt-10 flex flex-col justify-center h-52">
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -9,14 +9,14 @@ import NavBarMobile from "../components/NavBarMobile";
 const Shop = () => {
   return (
     <div className="h-full w-full colored-background">
-      <div className={`hidden md:block px-5  w-full py-5`}>
+      <div className={`hidden md:block px-5  w-full py-5 shadow`}>
         <NavBar current={"/shop"} />
       </div>
       <div className="block md:hidden  w-full bg-custom-brown-dark">
         <NavBarMobile current={"/shop"} />
       </div>
 
-      <div className=" flex flex-col justify-center">
+      <div className=" flex flex-col mt-10 justify-center">
         <img
           src={insegna}
           alt="truffle"
@@ -30,7 +30,9 @@ const Shop = () => {
       <div className="block h-full md:hidden">
         <CarouselShop />
       </div>
-      <Footer />
+      <div className="shadow-top mt-10 flex flex-col justify-center h-52">
+        <Footer />
+      </div>
     </div>
   );
 };
