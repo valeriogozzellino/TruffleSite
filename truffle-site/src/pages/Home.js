@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const handleScroll = () => {
       // Imposta il colore di sfondo fisso se la profondità di scorrimento supera i 1000px
-      if (window.scrollY > 750) {
+      if (window.scrollY > 700) {
         setBackgroundFixed(true);
       } else {
         setBackgroundFixed(false);
@@ -35,10 +35,10 @@ const Home = () => {
         className={`hidden md:block px-5 z-10 fixed w-full py-5 ${
           backgroundFixed ? "bg-custom-brown-dark" : "bg-custom-brown-opacity"
         }`}>
-        <NavBar />
+        <NavBar current={"/"} />
       </div>
       <div className="block md:hidden z-10 fixed w-full bg-custom-brown-dark">
-        <NavBarMobile />
+        <NavBarMobile current={"/"} />
       </div>
 
       <div className="flex flex-col justify-start items-center mb-8 md:w-full">

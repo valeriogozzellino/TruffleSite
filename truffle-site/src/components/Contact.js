@@ -22,10 +22,10 @@ const Contact = () => {
     setMessage(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Handle form submission logic here
+  // };
 
   return (
     <div className="stile-hover text-white rounded-xl w-2/3">

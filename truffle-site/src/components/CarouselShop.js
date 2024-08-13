@@ -1,9 +1,12 @@
 import React from "react";
 import Slider from "react-slick";
 import Img from "../img/truffleElement.png";
+import { dataTruffle } from "../utils/dataTruffle";
 
 const CarouselShop = () => {
   const [showMore, setShowMore] = React.useState(false);
+  const elements = dataTruffle;
+
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
@@ -23,29 +26,6 @@ const CarouselShop = () => {
       },
     ],
   };
-
-  const elements = [
-    {
-      title: "MAGNATUM PICO (TARTUFO BIANCO)",
-      description:
-        "Il tartufo nero, conosciuto anche come il diamante nero della cucina, è uno dei funghi più pregiati e ricercati al mondo...",
-    },
-    {
-      title: "NERO ESTIVO (SCORZONE)",
-      description:
-        "Il tartufo nero, conosciuto anche come il diamante nero della cucina, è uno dei funghi più pregiati e ricercati al mondo...",
-    },
-    {
-      title: "NERO PREGIATO (MELANOSPORUM VITT)",
-      description:
-        "Il tartufo nero, conosciuto anche come il diamante nero della cucina, è uno dei funghi più pregiati e ricercati al mondo...",
-    },
-    {
-      title: "NERO INVERNALE (BRUMALE)",
-      description:
-        "Il tartufo nero, conosciuto anche come il diamante nero della cucina, è uno dei funghi più pregiati e ricercati al mondo...",
-    },
-  ];
 
   return (
     <div className="flex flex-col items-center py-14">

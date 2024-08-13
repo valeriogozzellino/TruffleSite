@@ -3,11 +3,14 @@ import Logo from "../img/logoTruffle2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 
-const NavBarMobile = () => {
+const NavBarMobile = ({ current }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  const handleNavigation = (root) => {
+    window.location.href = root;
   };
 
   return (
@@ -48,24 +51,32 @@ const NavBarMobile = () => {
         <div className="w-full mt-8">
           <ul className="space-y-4">
             <li>
-              <a href="#" className="text-white hover:underline">
-                Link 1
-              </a>
+              <span
+                onClick={() => handleNavigation("/booked")}
+                className="text-white hover:underline">
+                CACCIA AL TARTUFO
+              </span>
             </li>
             <li>
-              <a href="#" className="text-white hover:underline">
-                Link 2
-              </a>
+              <span
+                onClick={() => handleNavigation("/shop")}
+                className="text-white hover:underline">
+                NEGOZIO
+              </span>
             </li>
             <li>
-              <a href="#" className="text-white hover:underline">
-                Link 3
-              </a>
+              <span
+                onClick={() => handleNavigation("/about")}
+                className="text-white hover:underline">
+                CHI SIAMO
+              </span>
             </li>
             <li>
-              <a href="#" className="text-white hover:underline">
-                Link 4
-              </a>
+              <span
+                onClick={() => handleNavigation("/contact")}
+                className="text-white hover:underline">
+                CONTATTI
+              </span>
             </li>
           </ul>
         </div>
