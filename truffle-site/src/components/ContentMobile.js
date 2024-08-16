@@ -23,7 +23,7 @@ const Section = ({ title, imgSrc, text, buttonText, onButtonClick }) => {
           {showMore ? "Mostra meno" : "Scopri di più"}
         </button>
         <button
-          className="colored-background-light hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 rounded"
+          className=" shadow-md colored-background-light hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 rounded"
           onClick={onButtonClick}>
           {buttonText}
         </button>
@@ -33,8 +33,8 @@ const Section = ({ title, imgSrc, text, buttonText, onButtonClick }) => {
 };
 
 const ContentMobile = () => {
-  const handleRedirect = () => {
-    window.location.href = "/about";
+  const handleRedirect = (root) => {
+    window.location.href = root;
   };
 
   return (
@@ -46,7 +46,7 @@ const ContentMobile = () => {
             imgSrc={section.imgSrc}
             text={section.text}
             buttonText={section.buttonText}
-            onButtonClick={handleRedirect}
+            onButtonClick={() => handleRedirect(section.root)}
           />
         </div>
       ))}

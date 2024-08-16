@@ -15,7 +15,7 @@ const NavBarMobile = ({ current }) => {
 
   return (
     <nav className="w-full sm:hidden h-24 flex flex-row justify-between items-center text-white">
-      <div className="m-5 h-fit w-20">
+      <div onClick={() => handleNavigation("/")} className="m-5 h-fit w-20">
         <img src={Logo} alt="Logo" className="" />
       </div>
       <div className="mr-5">
@@ -50,6 +50,13 @@ const NavBarMobile = ({ current }) => {
         </div>
         <div className="w-full mt-8">
           <ul className="space-y-4">
+            <li>
+              <span
+                onClick={() => handleNavigation("/")}
+                className="text-white hover:underline">
+                HOME
+              </span>
+            </li>
             <li>
               <span
                 onClick={() => handleNavigation("/booked")}
