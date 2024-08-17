@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { contentData } from "../utils/contentData";
 import WindowShop from "./WindowShop";
 
@@ -7,10 +8,31 @@ const Content = () => {
     window.location.href = rootDest;
   };
 
+  // Opzioni per l'animazione
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.3, // Incrementa il ritardo per ogni elemento
+        duration: 0.5,
+      },
+    }),
+  };
+
   return (
-    <div className="h-full w-full colored-background">
+    <div className="h-full w-full bg-custom-brown-dark">
       {contentData.map((section, index) => (
-        <div key={index} className="px-10 py-10">
+        <motion.div
+          key={index}
+          className="px-10 py-10"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          custom={index}
+          viewport={{ once: true }} // Animazione solo la prima volta che entra in vista
+        >
           <h1 className="text-4xl text-center mb-5 text-white">
             {section.title}
           </h1>
@@ -44,12 +66,19 @@ const Content = () => {
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
       ))}
       <h1 className="text-4xl text-center mb-5 mt-10 text-white">
         I NOSTRI PRODOTTI
       </h1>
-      <WindowShop />
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }} // Animazione solo la prima volta che entra in vista
+      >
+        <WindowShop />
+      </motion.div>
     </div>
   );
 };

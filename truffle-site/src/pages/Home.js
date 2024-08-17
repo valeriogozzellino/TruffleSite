@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import NavBar from "../components/NavBar";
 import NavBarMobile from "../components/NavBarMobile";
 import videoCaccia from "../video/cacciaTartufo.mp4";
@@ -6,35 +6,25 @@ import Content from "../components/Content";
 import ContentMobile from "../components/ContentMobile";
 import Footer from "../components/Footer";
 import Contact from "../components/Contact";
+import { motion } from "framer-motion";
 
 const Home = () => {
-  const [backgroundFixed, setBackgroundFixed] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Imposta il colore di sfondo fisso se la profondità di scorrimento supera i 1000px
-      if (window.scrollY > 700) {
-        setBackgroundFixed(true);
-      } else {
-        setBackgroundFixed(false);
-      }
-    };
-
-    // Aggiungi l'event listener allo scroll
-    window.addEventListener("scroll", handleScroll);
-
-    // Rimuovi l'event listener al dismount del componente
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  // Opzioni per l'animazione
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.3, // Incrementa il ritardo per ogni elemento
+        duration: 0.5,
+      },
+    }),
+  };
 
   return (
     <div className="h-full w-full colored-background">
-      <div
-        className={`hidden md:block px-5 z-10 fixed w-full py-5 shadow ${
-          backgroundFixed ? "bg-custom-brown-dark" : "bg-custom-brown-opacity"
-        }`}>
+      <div>
         <NavBar current={"/"} />
       </div>
       <div className="block md:hidden z-10 fixed w-full bg-custom-brown-dark">
@@ -60,9 +50,16 @@ const Home = () => {
       </div>
 
       <h1 className="text-white text-4xl text-center py-4">CONTATTACI</h1>
-      <div className="flex flex-row justify-center">
-        <Contact />
-      </div>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }} // Animazione solo la prima volta che entra in vista
+      >
+        <div className="flex flex-row justify-center">
+          <Contact />
+        </div>
+      </motion.div>
       <div className="shadow-top mt-10 flex flex-col justify-center h-52">
         <Footer />
       </div>

@@ -6,12 +6,12 @@ import Footer from "../components/Footer";
 
 const ContactUs = () => {
   return (
-    <div className="h-full colored-background">
-      <div className={`hidden md:block  px-5  w-full py-5 shadow`}>
-        <NavBar current={"/contact"} />
+    <div className="colored-background">
+      <div>
+        <NavBar current={"/"} />
       </div>
-      <div className="block md:hidden  w-full bg-custom-brown-dark">
-        <NavBarMobile current={"/contact"} />
+      <div className="block md:hidden z-10 fixed w-full bg-custom-brown-dark">
+        <NavBarMobile current={"/"} />
       </div>
       <div className="flex flex-col mt-10 justify-center items-center ">
         <h1 className="text-4xl text-center mb-5 text-white">Contact Us</h1>

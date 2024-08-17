@@ -1,15 +1,36 @@
 import React, { useState } from "react";
 import { contentData } from "../utils/contentData";
 import CarouselShop from "./CarouselShop";
+import { motion } from "framer-motion";
 
-const Section = ({ title, imgSrc, text, buttonText, onButtonClick }) => {
+const sectionVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1, // Incrementa il ritardo per ogni elemento
+      duration: 0.5,
+    },
+  }),
+};
+
+const Section = ({ title, imgSrc, text, buttonText, onButtonClick, index }) => {
   const [showMore, setShowMore] = useState(false);
   const toggleShowMore = () => setShowMore(!showMore);
 
   return (
-    <div className="flex flex-col px-10">
-      <h1 className="text-2xl text-center mb-5 text-white">{title}</h1>
-      <div className="md:w-1/2">
+    <motion.div
+      className="flex flex-col px-10"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      custom={index}
+      viewport={{ once: true }}>
+      <h1 className="text-2xl text-center mb-5 text-white">
+        <b>{title}</b>
+      </h1>
+      <div className="md:w-4/5">
         <img src={imgSrc} alt="Logo" className="w-full h-[300px] rounded" />
       </div>
       <div className="flex flex-col justify-start items-center mt-5">
@@ -20,18 +41,17 @@ const Section = ({ title, imgSrc, text, buttonText, onButtonClick }) => {
           {text}
         </p>
         <button className="text-white underline mt-2" onClick={toggleShowMore}>
-          {showMore ? "Mostra meno" : "Scopri di più"}
+          <i>{showMore ? "Mostra meno" : "Scopri di più"}</i>
         </button>
         <button
-          className=" shadow-md colored-background-light hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 rounded"
+          className="shadow-md colored-background-light hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 rounded"
           onClick={onButtonClick}>
           {buttonText}
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
-
 const ContentMobile = () => {
   const handleRedirect = (root) => {
     window.location.href = root;
@@ -40,8 +60,9 @@ const ContentMobile = () => {
   return (
     <div className="h-full w-full colored-background">
       {contentData.map((section, index) => (
-        <div className="px-7 py-10" key={index}>
+        <div className="py-10" key={index}>
           <Section
+            index={index}
             title={section.title}
             imgSrc={section.imgSrc}
             text={section.text}
@@ -50,6 +71,9 @@ const ContentMobile = () => {
           />
         </div>
       ))}
+      <h1 className="text-2xl text-center mt-5 text-white">
+        <b>I NOSTRI PRODOTTI</b>
+      </h1>
       <CarouselShop />
     </div>
   );

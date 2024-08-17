@@ -2,42 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { dataTruffle } from "../utils/dataTruffle";
 import { useState } from "react";
-
-const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
-  return (
-    <div className="flex flex-col border rounded shadow mt-4 h-36 w-full items-center bg-custom-brown-light">
-      <div className="m-3">
-        <p> SELECT QUANTITY</p>
-      </div>
-      <div className="flex flex-row space-x-4">
-        <button
-          onClick={() => setQuantity(quantity - 10)}
-          className="text-white border w-7 rounded-xl">
-          -
-        </button>
-        <p className="text-white">{quantity}g</p>
-        <button
-          onClick={() => setQuantity(quantity + 10)}
-          className="text-white border w-7 rounded-xl">
-          +
-        </button>
-      </div>
-      <div className="flex flex-row w-full space-x-2 justify-center">
-        <button
-          onClick={() => {
-            setQuantity(10); // Imposta la quantità
-            setQuantityVisible(false); // Nascondi il componente di gestione quantità
-          }}
-          className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5  rounded shadow-xl">
-          Annulla
-        </button>
-        <button className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5  rounded shadow-xl">
-          Conferma
-        </button>
-      </div>
-    </div>
-  );
-};
+import ManageQuantity from "../atoms/ManageQuantity";
 
 const CarouselShop = () => {
   const [showMore, setShowMore] = React.useState(false);
@@ -71,7 +36,7 @@ const CarouselShop = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-14">
+    <div className="flex flex-col items-center py-8 mb-5">
       <Slider {...settings} className="w-2/3">
         {elements.map((element, index) => (
           <div

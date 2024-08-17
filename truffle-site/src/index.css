@@ -43,3 +43,11 @@ p {
 .stile-hover {
   background-color: rgba(157, 132, 104, 1);
 }
+
+/* Aumento della specificità del selettore */
+.slick-slider .slick-dots li button:before {
+  color: white;
+  font-size: 8px;
+  opacity: 1;
+  transition: all 0.3s ease;
+}

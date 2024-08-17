@@ -68,9 +68,36 @@ const Contact = () => {
         <div className="w-full md:w-1/3">
           <p className="text-lg font-semibold mb-2">A COSA SEI INTERESSATO?:</p>
           <ul className="list-disc list-inside space-y-2">
-            <li>CACCIA AL TARTUFO</li>
-            <li>ACQUISTARE TARTUFI</li>
-            <li>INFORMAZIONI</li>
+            <li>
+              <label className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-gray-600"
+                  value="CACCIA AL TARTUFO"
+                />
+                <span className="ml-2">CACCIA AL TARTUFO</span>
+              </label>
+            </li>
+            <li>
+              <label className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-gray-600"
+                  value="ACQUISTARE TARTUFI"
+                />
+                <span className="ml-2">ACQUISTARE TARTUFI</span>
+              </label>
+            </li>
+            <li>
+              <label className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-gray-600"
+                  value="INFORMAZIONI"
+                />
+                <span className="ml-2">INFORMAZIONI</span>
+              </label>
+            </li>
           </ul>
         </div>
       </div>

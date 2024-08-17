@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { dataTruffle } from "../utils/dataTruffle";
+import ManageQuantity from "../atoms/ManageQuantity";
 
 const TruffleItem = ({ title, description, imgUrl }) => {
   const [showMore, setShowMore] = useState(false);
@@ -35,116 +36,6 @@ const TruffleItem = ({ title, description, imgUrl }) => {
           setQuantity={setQuantity}
           setQuantityVisible={setQuantityVisible}
         />
-      )}
-    </div>
-  );
-};
-
-const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
-  const [isConfirmed, setIsConfirmed] = useState(false);
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const handleConfirmClick = () => {
-    setIsConfirmed(true);
-  };
-  const handleBuyClick = () => {
-    console.log("Email: ", email);
-    console.log("Phone: ", phone);
-    console.log("Address: ", address);
-    console.log("Quantity: ", quantity);
-    setIsConfirmed(false);
-    setQuantityVisible(false);
-  };
-  const price = quantity * 10;
-
-  return (
-    <div className="flex flex-col border rounded shadow mt-4 h-auto w-full items-center bg-custom-brown-light p-4">
-      <div>
-        <p className="text-lg font-semibold">SELEZIONA QUANTITÀ</p>
-      </div>
-      <div className="flex flex-row space-x-4 my-4">
-        <button
-          onClick={() => setQuantity(quantity - 10)}
-          className="text-white border w-7 rounded-xl">
-          -
-        </button>
-        <p className="text-white">{quantity}</p>
-        <button
-          onClick={() => setQuantity(quantity + 10)}
-          className="text-white border w-7 rounded-xl">
-          +
-        </button>
-      </div>
-      <div className="flex flex-row w-full space-x-2 justify-center">
-        <button
-          onClick={() => {
-            setQuantity(10); // Imposta la quantità
-            setQuantityVisible(false); // Nascondi il componente di gestione quantità
-          }}
-          className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 w-1/3 rounded shadow-xl">
-          Annulla
-        </button>
-        <button
-          onClick={handleConfirmClick}
-          className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 w-1/3 rounded shadow-xl">
-          Conferma
-        </button>
-      </div>
-
-      {isConfirmed && (
-        <div className="mt-6 w-full">
-          <div className="flex flex-col space-y-4">
-            <div>
-              <label className="text-lg font-semibold" htmlFor="email">
-                Email:
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="text-lg font-semibold" htmlFor="phone">
-                Numero di Telefono:
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="text-lg font-semibold" htmlFor="address">
-                Address:
-              </label>
-              <input
-                type="text"
-                id="address"
-                className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-            <div>
-              <p className="text-lg font-semibold">
-                Prezzo Totale: <span className="text-xl">{price}€</span>
-              </p>
-            </div>
-            <div className="w-full flex justify-center">
-              <button
-                onClick={handleBuyClick}
-                className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 w-2/3 rounded shadow-xl">
-                Conferma Acquisto
-              </button>
-            </div>
-          </div>
-        </div>
       )}
     </div>
   );
