@@ -42,7 +42,7 @@ const Home = () => {
         <NavBarMobile current={"/"} />
       </div>
 
-      <Slider {...settings} className="pt-28 md:pt-0">
+      <Slider {...settings} className="pt-28 md:pt-0 mb-7">
         <div>
           <video autoPlay loop muted className="w-full h-1/2 md:h-screen">
             <source src={videoCaccia} type="video/mp4" />

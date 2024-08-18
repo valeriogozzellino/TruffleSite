@@ -60,3 +60,35 @@ p {
 .slick-list {
   padding: 0 !important; /* Rimuove padding che potrebbe causare problemi */
 }
+
+.bkImageShop {
+  background-image: url("../public/img/boscolombardia.png");
+  background-size: 100% 100%; /* Inizia con dimensioni normali */
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  animation: pulseBackground 6s infinite ease-in-out;
+}
+
+@keyframes pulseBackground {
+  0%,
+  100% {
+    background-size: 100% 100%;
+    opacity: 0.7;
+  }
+  50% {
+    background-size: 102% 102%; /* Leggero aumento delle dimensioni per un effetto sottile */
+    opacity: 0.6;
+  }
+}
+
+.outlined-title {
+  color: #edb350; /* Colore del testo, qui è un arancione (tailwind text-orange-300) */
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; /* Ogni valore aggiunge un'ombra in una direzione diversa */
+}
+.outlined-text {
+  color: #020101; /* Colore del testo, qui è un arancione (tailwind text-orange-300) */
+  text-shadow: -0.5px -0.5px 0 #ece7e7, 0.5px -0.5px 0 #ffffff,
+    -0.5px 0.5px 0 #ffffff, 0.5px 0.5px 0 #ffffff; /* Ogni valore aggiunge un'ombra in una direzione diversa */
+}

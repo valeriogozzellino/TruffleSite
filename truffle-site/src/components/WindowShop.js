@@ -16,11 +16,17 @@ const TruffleItem = ({ title, description, imgUrl }) => {
   return (
     <div className="flex flex-col w-1/2 items-center m-7 px-5 h-full">
       <div className="h-[90px]">
-        <h3 className="text-center text-2xl py-3">{title}</h3>
+        <b>
+          <h3 className="text-center outlined-title text-2xl py-3">{title}</h3>
+        </b>
       </div>
       <img src={imgUrl} alt="truffle" className="h-[250px] w-[250px]" />
-      <p className={`${showMore ? "" : "line-clamp-2"}`}>{description}</p>
-      <button className="text-white underline mt-2" onClick={toggleShowMore}>
+      <p className={`${showMore ? "" : "line-clamp-2"} outlined-text`}>
+        <b>{description}</b>
+      </p>
+      <button
+        className="text-white outlined-text underline mt-2"
+        onClick={toggleShowMore}>
         {showMore ? "Mostra meno" : "Scopri di più"}
       </button>
       {!quantityVisible && (

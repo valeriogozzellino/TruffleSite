@@ -66,6 +66,7 @@ const Content = () => {
               </div>
             )}
           </div>
+          <div className="w-4/5 h-[1px] bg-black mt-8 ml-32"></div>
         </motion.div>
       ))}
       <h1 className="text-4xl text-center mb-5 mt-10 text-white">
@@ -76,7 +77,7 @@ const Content = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }} // Animazione solo la prima volta che entra in vista
-      >
+        className="bkImageShop">
         <WindowShop />
       </motion.div>
     </div>

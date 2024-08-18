@@ -18,7 +18,7 @@ const Booked = () => {
           Prenota la Tua Esperienza di Ricerca al Tartufo
         </h1>
         <img
-          src={Img1}
+          src="../img/SfondoCacciaTartufo.png"
           alt="truffle"
           className="h-[400px] md:h-[600px] w-4/5 mx-auto rounded-lg shadow-md"
         />
