@@ -19,6 +19,7 @@ html {
 /* Aggiungi questa regola per applicare il font globalmente */
 body {
   font-family: "Libre Caslon Text", serif;
+  background-color: rgba(54, 37, 26, 1);
 }
 
 /* Classe per applicare il font Libre Caslon Text */

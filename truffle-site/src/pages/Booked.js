@@ -14,7 +14,7 @@ const Booked = () => {
         <NavBarMobile current={"/booked"} />
       </div>
       <div className=" flex flex-col justify-center">
-        <h1 className="text-center text-white text-4xl pt-24 m-10">
+        <h1 className="text-center text-white text-4xl md:pt-24 m-10">
           Prenota la Tua Esperienza di Ricerca al Tartufo
         </h1>
         <img
