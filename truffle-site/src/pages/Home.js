@@ -44,7 +44,7 @@ const Home = () => {
 
       <Slider {...settings} className="pt-28 md:pt-0 mb-7">
         <div>
-          <video autoPlay loop muted className="w-full h-1/2 md:h-screen">
+          <video autoPlay loop muted className="w-full h-[400px] md:h-screen">
             <source src={videoCaccia} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -53,21 +53,21 @@ const Home = () => {
           <img
             src="../img/tartufiVENDITA.png"
             alt="immagine prova"
-            className="w-full  h-1/2 md:h-screen"
+            className="w-full  h-[400px] md:h-screen"
           />
         </div>
         <div>
           <img
             src="../img/IMG_4397.png"
             alt="immagine prova"
-            className="w-full h-1/2 md:h-screen"
+            className="w-full h-[400px] md:h-screen"
           />
         </div>
         <div>
           <img
             src="../img/IMG_4881.jpg"
             alt="immagine prova"
-            className="w-full h-1/2 md:h-screen"
+            className="w-full h-[400px] md:h-screen"
           />
         </div>
       </Slider>
@@ -79,13 +79,13 @@ const Home = () => {
         <ContentMobile />
       </div>
 
-      <h1 className="text-white text-4xl text-center py-4">CONTATTACI</h1>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }} // Animazione solo la prima volta che entra in vista
-      >
+        className=" py-10">
+        <h1 className="text-white text-4xl text-center py-4">CONTATTACI</h1>
         <div className="flex flex-row justify-center">
           <Contact />
         </div>

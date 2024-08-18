@@ -36,17 +36,19 @@ const CarouselShop = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-8 mb-5">
+    <div className="flex flex-col items-center bkImageShop  py-8 mb-5">
       <Slider {...settings} className="w-2/3">
         {elements.map((element, index) => (
           <div
             key={index}
             className="flex text-white flex-col items-center mb-5 px-3">
             <div className="h-[100px]">
-              <h3 className="text-xl text-center py-3">{element.title}</h3>
+              <h3 className=" outlined-title text-xl text-center py-3">
+                <b>{element.title}</b>
+              </h3>
             </div>
             <img src={element.imgUrl} alt="truffle" className="h-[200px]" />
-            <p className={`${showMore ? "" : "line-clamp-2"}`}>
+            <p className={`${showMore ? "" : "line-clamp-2"} outlined-text`}>
               {element.description}
             </p>
             <div className="flex flex-col w-full justify-center items-center">

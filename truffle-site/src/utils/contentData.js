@@ -11,7 +11,7 @@ export const contentData = [
     title: "VENDITA DI TARTUFI",
     text: "Per gli intenditori e gli appassionati, offriamo anche una selezione di tartufi al dettaglio, disponibili per l'acquisto diretto. Ogni tartufo è selezionato con cura per garantire qualità e freschezza, portando direttamente sulla vostra tavola l'eccellenza del territorio. Esplora, Scopri, Assapora - L'esperienza del Tartufo ti aspetta!",
     buttonText: "ACQUISTA",
-    imgSrc: "../img/tartufiVENDITA.png",
+    imgSrc: "../img/tartufiNobg.png",
     imgPosition: "right",
     root: "/shop",
   },
