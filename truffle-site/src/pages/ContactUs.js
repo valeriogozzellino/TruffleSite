@@ -13,7 +13,7 @@ const ContactUs = () => {
       <div className="block md:hidden z-10 fixed w-full bg-custom-brown-dark">
         <NavBarMobile current={"/"} />
       </div>
-      <div className="flex flex-col mt-10 justify-center items-center ">
+      <div className="flex flex-col pt-32 justify-center items-center ">
         <h1 className="text-4xl text-center mb-5 text-white">Contact Us</h1>
         <p className=" text-center  text-white">
           Fill out the form below to get in touch with us.

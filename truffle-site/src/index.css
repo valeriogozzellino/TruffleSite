@@ -51,3 +51,11 @@ p {
   opacity: 1;
   transition: all 0.3s ease;
 }
+
+.slick-slider {
+  max-width: 100%; /* Impedisce che il carosello superi la larghezza del viewport */
+}
+
+.slick-list {
+  padding: 0 !important; /* Rimuove padding che potrebbe causare problemi */
+}

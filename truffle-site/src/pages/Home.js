@@ -7,6 +7,7 @@ import ContentMobile from "../components/ContentMobile";
 import Footer from "../components/Footer";
 import Contact from "../components/Contact";
 import { motion } from "framer-motion";
+import Slider from "react-slick";
 
 const Home = () => {
   // Opzioni per l'animazione
@@ -21,6 +22,16 @@ const Home = () => {
       },
     }),
   };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false, // Disabilita le frecce di navigazione
+  };
 
   return (
     <div className="h-full w-full colored-background">
@@ -31,16 +42,35 @@ const Home = () => {
         <NavBarMobile current={"/"} />
       </div>
 
-      <div className="flex flex-col justify-start items-center mb-8 md:w-full">
-        <video
-          autoPlay
-          loop
-          muted
-          className="w-full h-full mt-24 md:m-0 "
-          src={videoCaccia}>
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      <Slider {...settings} className="">
+        <div>
+          <video autoPlay loop muted className="w-full h-screen">
+            <source src={videoCaccia} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div>
+          <img
+            src="../img/tartufiVENDITA.png"
+            alt="immagine prova"
+            className="w-full  h-screen"
+          />
+        </div>
+        <div>
+          <img
+            src="../img/IMG_4397.png"
+            alt="immagine prova"
+            className="w-full  h-screen"
+          />
+        </div>
+        <div>
+          <img
+            src="../img/IMG_4881.jpg"
+            alt="immagine prova"
+            className="w-full h-screen"
+          />
+        </div>
+      </Slider>
 
       <div className="hidden md:block">
         <Content />

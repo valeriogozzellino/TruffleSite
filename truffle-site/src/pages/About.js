@@ -1,17 +1,20 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import NavBarMobile from "../components/NavBarMobile";
+import Footer from "../components/Footer";
 
 const About = () => {
   return (
     <div className="h-full w-full colored-background">
-      <div className={`hidden md:block px-5  w-full py-5`}>
+      <div>
         <NavBar current={"/about"} />
       </div>
       <div className="block md:hidden  w-full bg-custom-brown-dark">
         <NavBarMobile current={"/about"} />
       </div>
-      <h1 className="text-4xl text-center m-5  text-white">La Nostra Storia</h1>
+      <h1 className="text-4xl text-center pt-36  text-white">
+        La Nostra Storia
+      </h1>
       <div className="flex flex-col items-center">
         <img
           src="../img/IMG_4397.png"
@@ -38,6 +41,7 @@ const About = () => {
           scoprire il mondo del tartufo e di farvi vivere un'esperienza
           indimenticabile.
         </p>
+        <Footer />
       </div>
     </div>
   );

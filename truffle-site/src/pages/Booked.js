@@ -7,14 +7,14 @@ import ContactBooked from "../components/ContactBooked";
 const Booked = () => {
   return (
     <div className="h-full w-full colored-background">
-      <div className={`hidden md:block px-5  w-full py-5`}>
+      <div>
         <NavBar current={"/booked"} />
       </div>
       <div className="block md:hidden  w-full bg-custom-brown-dark">
         <NavBarMobile current={"/booked"} />
       </div>
-      <div className=" flex flex-col mt-10 justify-center">
-        <h1 className="text-center text-white text-4xl m-10">
+      <div className=" flex flex-col justify-center">
+        <h1 className="text-center text-white text-4xl pt-24 m-10">
           Prenota la Tua Esperienza di Ricerca al Tartufo
         </h1>
         <img
