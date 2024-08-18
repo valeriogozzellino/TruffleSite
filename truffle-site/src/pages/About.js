@@ -12,7 +12,7 @@ const About = () => {
       <div className="block md:hidden  w-full bg-custom-brown-dark">
         <NavBarMobile current={"/about"} />
       </div>
-      <h1 className="text-4xl text-center pt-36  text-white">
+      <h1 className="text-4xl text-center pt-5 md:pt-36  text-white">
         La Nostra Storia
       </h1>
       <div className="flex flex-col items-center">

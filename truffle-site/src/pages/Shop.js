@@ -16,14 +16,16 @@ const Shop = () => {
         <NavBarMobile current={"/shop"} />
       </div>
 
-      <div className=" flex flex-col pt-32 justify-center">
+      <div className=" flex flex-col pt-10 md:pt-32 justify-center">
         <img
           src={insegna}
           alt="truffle"
           className="h-[500px] w-4/5 mx-auto rounded-lg shadow-md"
         />
       </div>
-
+      <h1 className="text-2xl text-center mb-5 mt-10 text-white">
+        <b>I NOSTRI PRODOTTI</b>
+      </h1>
       <div className="hidden md:flex">
         <WindowShop />
       </div>

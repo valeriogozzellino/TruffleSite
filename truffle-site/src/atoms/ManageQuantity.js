@@ -9,6 +9,11 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
     console.log("Confirm");
     setIsConfirmed(true);
   };
+
+  const decrementaQuantita = () => {
+    setQuantity((prev) => (prev > 10 ? prev - 10 : 10));
+  };
+
   const handleBuyClick = () => {
     console.log("Email: ", email);
     console.log("Phone: ", phone);
@@ -26,7 +31,7 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
       </div>
       <div className="flex flex-row space-x-4">
         <button
-          onClick={() => setQuantity(quantity - 10)}
+          onClick={() => decrementaQuantita()}
           className="text-white border w-7 rounded-xl">
           -
         </button>

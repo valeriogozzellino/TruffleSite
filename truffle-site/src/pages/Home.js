@@ -42,9 +42,9 @@ const Home = () => {
         <NavBarMobile current={"/"} />
       </div>
 
-      <Slider {...settings} className="">
+      <Slider {...settings} className="pt-28 md:pt-0">
         <div>
-          <video autoPlay loop muted className="w-full h-screen">
+          <video autoPlay loop muted className="w-full h-1/2 md:h-screen">
             <source src={videoCaccia} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -53,21 +53,21 @@ const Home = () => {
           <img
             src="../img/tartufiVENDITA.png"
             alt="immagine prova"
-            className="w-full  h-screen"
+            className="w-full  h-1/2 md:h-screen"
           />
         </div>
         <div>
           <img
             src="../img/IMG_4397.png"
             alt="immagine prova"
-            className="w-full  h-screen"
+            className="w-full h-1/2 md:h-screen"
           />
         </div>
         <div>
           <img
             src="../img/IMG_4881.jpg"
             alt="immagine prova"
-            className="w-full h-screen"
+            className="w-full h-1/2 md:h-screen"
           />
         </div>
       </Slider>

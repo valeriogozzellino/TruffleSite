@@ -13,7 +13,9 @@ const ContactBooked = () => {
   const handleAllergieClick = () => {
     setShowAllergie(!showAllergie);
   };
-
+  const decrementaPersone = () => {
+    setNumeroPersone((prev) => (prev > 1 ? prev - 1 : 1));
+  };
   return (
     <div className=" w-4/5 md:w-full border p-6 max-w-lg text-white m-5 bg-custom-brown-light rounded-xl shadow-lg">
       <div className="w-full h-full space-y-6">
@@ -30,6 +32,18 @@ const ContactBooked = () => {
             min="1"
             className="rounded-lg w-full p-2 text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-custom-brown-dark"
           />
+          <div className="flex flex-row space-x-4">
+            <button
+              onClick={() => decrementaPersone()}
+              className="text-white border w-7 rounded-xl">
+              -
+            </button>
+            <button
+              onClick={() => setNumeroPersone(numeroPersone + 1)}
+              className="text-white border w-7 rounded-xl">
+              +
+            </button>
+          </div>
         </div>
 
         <div className="flex flex-col space-y-2">
