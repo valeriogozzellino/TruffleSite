@@ -8,7 +8,7 @@ export const dataTruffle = [
   {
     title: "NERO ESTIVO (SCORZONE)",
     description:
-      "Il tartufo nero, conosciuto anche come il diamante nero della cucina, è uno dei funghi più pregiati e ricercati al mondo...",
+      "IL TARTUFO NERO, CONOSCIUTO ANCHE COME IL DIAMANTE NERO DELLA CUCINA, È UNO DEI FUNGHI PIÙ PREGIATI E RICERCATI AL MONDO...",
     imgUrl: "../img/NeroScorzone.png",
   },
   {
