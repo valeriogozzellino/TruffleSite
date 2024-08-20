@@ -1,11 +1,21 @@
 import React, { useState } from "react";
-
+import emailjs from "emailjs-com";
+import { motion } from "framer-motion";
 const Contact = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-
+  const [isLoading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [interests, setInterests] = useState({
+    cacciaAlTartufo: false,
+    acquistareTartufi: false,
+    informazioni: false,
+  });
+  const handleCheckboxChange = (event) => {
+    setInterests({ ...interests, [event.target.name]: event.target.checked });
+  };
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -20,6 +30,58 @@ const Contact = () => {
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const selectedInterests = Object.entries(interests)
+      .filter(([key, value]) => value)
+      .map(([key]) =>
+        key
+          .replace(/([A-Z])/g, " $1")
+          .toUpperCase()
+          .trim()
+      )
+      .join(", ");
+
+    const templateParams = {
+      from_name: `${name} ${surname}`,
+      from_email: email,
+      to_email: "milotruffle10@gmail.com",
+      subject: "Richiesta contatti sito",
+      message: `${message}\nInteressi: ${selectedInterests}`,
+    };
+
+    emailjs
+      .send(
+        "service_i7vu515",
+        "template_jc38hsi",
+        templateParams,
+        "mcJ4_qCEU_GK0iRCt"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setLoading(false);
+          setSuccess(true);
+          setName("");
+          setSurname("");
+          setEmail("");
+          setMessage("");
+          setInterests({
+            cacciaAlTartufo: false,
+            acquistareTartufi: false,
+            informazioni: false,
+          });
+          setTimeout(() => setSuccess(false), 5000); // Hide the popup after 5 seconds
+        },
+        (error) => {
+          console.log(error.text);
+          setLoading(false);
+          alert("Si è verificato un errore durante l'invio della mail.");
+        }
+      );
   };
 
   return (
@@ -67,13 +129,15 @@ const Contact = () => {
         </div>
         <div className="w-full md:w-1/3">
           <p className="text-lg font-semibold mb-2">A COSA SEI INTERESSATO?:</p>
-          <ul className="list-disc list-inside space-y-2">
+          <ul className="list-none space-y-2">
             <li>
               <label className="inline-flex items-center">
                 <input
                   type="checkbox"
                   className="form-checkbox h-5 w-5 text-gray-600"
-                  value="CACCIA AL TARTUFO"
+                  name="cacciaAlTartufo"
+                  checked={interests.cacciaAlTartufo}
+                  onChange={handleCheckboxChange}
                 />
                 <span className="ml-2">CACCIA AL TARTUFO</span>
               </label>
@@ -83,7 +147,9 @@ const Contact = () => {
                 <input
                   type="checkbox"
                   className="form-checkbox h-5 w-5 text-gray-600"
-                  value="ACQUISTARE TARTUFI"
+                  name="acquistareTartufi"
+                  checked={interests.acquistareTartufi}
+                  onChange={handleCheckboxChange}
                 />
                 <span className="ml-2">ACQUISTARE TARTUFI</span>
               </label>
@@ -93,7 +159,9 @@ const Contact = () => {
                 <input
                   type="checkbox"
                   className="form-checkbox h-5 w-5 text-gray-600"
-                  value="INFORMAZIONI"
+                  name="informazioni"
+                  checked={interests.informazioni}
+                  onChange={handleCheckboxChange}
                 />
                 <span className="ml-2">INFORMAZIONI</span>
               </label>
@@ -113,10 +181,24 @@ const Contact = () => {
         />
       </div>
       <div className="flex justify-center mt-8">
-        <button className="bg-custom-brown-dark hover:bg-custom-brown-dark-hover text-white font-bold py-2 px-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
-          INVIA
-        </button>
+        {!isLoading ? (
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={handleSubmit}
+            className="bg-custom-brown-dark hover:bg-custom-brown-dark-hover text-white font-bold py-2 px-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
+            INVIA
+          </motion.button>
+        ) : (
+          <p>Invio in corso...</p>
+        )}
       </div>
+
+      {success && (
+        <div className="fixed top-0 z-10 left-0 right-0 bg-green-500 text-white text-center p-4 rounded-b-lg">
+          Richiesta inviata con successo!
+        </div>
+      )}
     </div>
   );
 };
