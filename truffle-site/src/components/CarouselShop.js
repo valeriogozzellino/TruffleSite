@@ -48,7 +48,10 @@ const CarouselShop = () => {
               </h3>
             </div>
             <img src={element.imgUrl} alt="truffle" className="h-[200px]" />
-            <p className={`${showMore ? "" : "line-clamp-2"} outlined-text`}>
+            <p
+              className={`${
+                showMore ? "" : "line-clamp-2"
+              } outlined-text bg-custom-brown-opacity rounded-md p-2 py-1`}>
               {element.description}
             </p>
             <div className="flex flex-col w-full justify-center items-center">
@@ -60,8 +63,8 @@ const CarouselShop = () => {
               {!quantityVisible && (
                 <button
                   onClick={openQuantity}
-                  className="colored-background-light hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 w-4/5 rounded shadow-xl">
-                  ACQUISTA
+                  className="colored-background hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 w-4/5 rounded shadow-xl">
+                  ORDINA
                 </button>
               )}
               {quantityVisible && (

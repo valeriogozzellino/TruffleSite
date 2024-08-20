@@ -61,34 +61,43 @@ p {
   padding: 0 !important; /* Rimuove padding che potrebbe causare problemi */
 }
 
+/** Animazione sfondo in movimento */
 .bkImageShop {
-  background-image: url("../public/img/boscolombardia.png");
+  background-image: url("../public/img/boscolombardia.jpg");
   background-size: 100% 100%; /* Inizia con dimensioni normali */
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   animation: pulseBackground 6s infinite ease-in-out;
 }
-
+/***/
 @keyframes pulseBackground {
   0%,
   100% {
     background-size: 100% 100%;
-    opacity: 0.7;
+    opacity: 0.8;
   }
   50% {
     background-size: 102% 102%; /* Leggero aumento delle dimensioni per un effetto sottile */
-    opacity: 0.6;
+    opacity: 0.9;
   }
 }
 
+/**testo in foreground */
 .outlined-title {
-  color: #edb350; /* Colore del testo, qui è un arancione (tailwind text-orange-300) */
+  color: #e5b713; /* Colore del testo, qui è un arancione (tailwind text-orange-300) */
   text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000; /* Ogni valore aggiunge un'ombra in una direzione diversa */
 }
 .outlined-text {
-  color: #020101; /* Colore del testo, qui è un arancione (tailwind text-orange-300) */
-  text-shadow: -0.5px -0.5px 0 #ece7e7, 0.5px -0.5px 0 #ffffff,
-    -0.5px 0.5px 0 #ffffff, 0.5px 0.5px 0 #ffffff; /* Ogni valore aggiunge un'ombra in una direzione diversa */
+  color: #fdfdfd; /* Colore del testo, qui è un arancione (tailwind text-orange-300) */
+  /* text-shadow: -0.5px -0.5px 0 #ece7e7, 0.5px -0.5px 0 #ffffff,
+    -0.5px 0.5px 0 #ffffff, 0.5px 0.5px 0 #ffffff; Ogni valore aggiunge un'ombra in una direzione diversa */
 }
+
+/*opacity  background degli elementi truffle item
+*/
+/* .opacity-90-bg {
+  background: #000;
+  opacity: 0.5;
+} */

@@ -27,7 +27,7 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
   return (
     <div className="flex flex-col border rounded shadow mt-4 w-full items-center bg-custom-brown-light">
       <div className="m-3">
-        <p> SELECT QUANTITY</p>
+        <p> SELECT QUANTITY AND YOU WILL RECEIVE AN EMAIL ASAP</p>
       </div>
       <div className="flex flex-row space-x-4">
         <button
