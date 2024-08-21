@@ -8,8 +8,9 @@ import Footer from "../components/Footer";
 import Contact from "../components/Contact";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
-
+import { useLanguage } from "../hook/LanguagesContext";
 const Home = () => {
+  const { language } = useLanguage();
   // Opzioni per l'animazione
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -85,7 +86,10 @@ const Home = () => {
         whileInView="visible"
         viewport={{ once: true }} // Animazione solo la prima volta che entra in vista
         className=" py-10">
-        <h1 className="text-white text-4xl text-center py-4">CONTATTACI</h1>
+        <h1 className="text-white text-4xl text-center py-4">
+          {" "}
+          {language === "it" ? "CONTATTACI" : "CONTACT US"}
+        </h1>
         <div className="flex flex-row justify-center">
           <Contact />
         </div>

@@ -1,12 +1,12 @@
 import React from "react";
 import WindowShop from "../components/WindowShop";
 import CarouselShop from "../components/CarouselShop";
-import insegna from "../img/InsegnaShop.webp";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import NavBarMobile from "../components/NavBarMobile";
-
+import { useLanguage } from "../hook/LanguagesContext";
 const Shop = () => {
+  const { language } = useLanguage();
   return (
     <div className="h-full w-full colored-background">
       <div>
@@ -16,15 +16,8 @@ const Shop = () => {
         <NavBarMobile current={"/shop"} />
       </div>
 
-      {/* <div className=" flex flex-col pt-10 md:pt-32 justify-center">
-        <img
-          src={insegna}
-          alt="truffle"
-          className="h-[500px] w-4/5 mx-auto rounded-lg shadow-md"
-        />
-      </div> */}
       <h1 className="text-2xl text-center pt-10 md:pt-32 mb-5 mt-10 text-white">
-        <b>I NOSTRI PRODOTTI</b>
+        <b>{language === "it" ? "I NOSTRI PRODOTTI" : "OUR PRODUCTS"}</b>
       </h1>
       <div className="hidden md:flex bkImageShop">
         <WindowShop />

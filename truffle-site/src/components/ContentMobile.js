@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { contentData } from "../utils/contentData";
 import CarouselShop from "./CarouselShop";
 import { motion } from "framer-motion";
+import { useLanguage } from "../hook/LanguagesContext";
+import { englishContent } from "../utils/contentDataEn";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -52,14 +54,23 @@ const Section = ({ title, imgSrc, text, buttonText, onButtonClick, index }) => {
     </motion.div>
   );
 };
+
 const ContentMobile = () => {
+  const { language } = useLanguage();
+  const [element, setElement] = useState(contentData);
   const handleRedirect = (root) => {
     window.location.href = root;
   };
-
+  useEffect(() => {
+    if (language === "it") {
+      setElement(contentData);
+    } else {
+      setElement(englishContent);
+    }
+  }, [language]);
   return (
     <div className="h-full w-full colored-background">
-      {contentData.map((section, index) => (
+      {element.map((section, index) => (
         <div className="py-10" key={index}>
           <Section
             index={index}

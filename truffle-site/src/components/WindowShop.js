@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dataTruffle } from "../utils/dataTruffle";
 import ManageQuantity from "../atoms/ManageQuantity";
-
+import { useLanguage } from "../hook/LanguagesContext";
+import { englishData } from "../utils/dataTruffleEn";
 /**
  * truffle item component
  * @param {string} title
@@ -11,6 +12,7 @@ import ManageQuantity from "../atoms/ManageQuantity";
  */
 
 const TruffleItem = ({ title, description, imgUrl }) => {
+  const { language } = useLanguage();
   const [showMore, setShowMore] = useState(false);
   const toggleShowMore = () => setShowMore(!showMore);
   const [quantityVisible, setQuantityVisible] = useState(false);
@@ -38,13 +40,13 @@ const TruffleItem = ({ title, description, imgUrl }) => {
       <button
         className="text-white outlined-text underline mt-2"
         onClick={toggleShowMore}>
-        {showMore ? "Mostra meno" : "Scopri di più"}
+        {showMore ? "Show less" : "Show more"}
       </button>
       {!quantityVisible && (
         <button
           onClick={openQuantity}
           className="colored-background hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 w-1/3 rounded-xl shadow-xl">
-          ORDINA
+          {language === "it" ? "ORDINA" : "ORDER"}
         </button>
       )}
       {quantityVisible && (
@@ -64,12 +66,21 @@ const TruffleItem = ({ title, description, imgUrl }) => {
  * @returns
  */
 const WindowShop = () => {
-  const truffleItems = dataTruffle;
+  const [elements, setElements] = useState(dataTruffle);
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    if (language === "it") {
+      setElements(dataTruffle);
+    } else {
+      setElements(englishData);
+    }
+  }, [language]);
 
   return (
     <div className="flex flex-col  opacity-90-bg items-center mb-10">
       <div className="text-white  flex flex-row w-2/3">
-        {truffleItems.slice(0, 2).map((item, index) => (
+        {elements.slice(0, 2).map((item, index) => (
           <TruffleItem
             title={item.title}
             description={item.description}
@@ -78,7 +89,7 @@ const WindowShop = () => {
         ))}
       </div>
       <div className="text-white flex flex-row w-2/3 ">
-        {truffleItems.slice(2).map((item, index) => (
+        {elements.slice(2).map((item, index) => (
           <TruffleItem
             key={index}
             title={item.title}

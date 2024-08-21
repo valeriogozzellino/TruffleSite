@@ -1,9 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { contentData } from "../utils/contentData";
+import { englishContent } from "../utils/contentDataEn";
 import WindowShop from "./WindowShop";
-
+import { useLanguage } from "../hook/LanguagesContext";
+import { useEffect, useState } from "react";
 const Content = () => {
+  const { language } = useLanguage();
+  const [languageData, setLanguageData] = useState(contentData);
+  useEffect(() => {
+    if (language === "it") {
+      setLanguageData(contentData);
+    } else {
+      setLanguageData(englishContent);
+    }
+  }, [language]);
+
   const handleRedirect = (rootDest) => {
     window.location.href = rootDest;
   };
@@ -23,7 +35,7 @@ const Content = () => {
 
   return (
     <div className="h-full w-full bg-custom-brown-dark">
-      {contentData.map((section, index) => (
+      {languageData.map((section, index) => (
         <motion.div
           key={index}
           className="px-10 py-10"
@@ -70,7 +82,7 @@ const Content = () => {
         </motion.div>
       ))}
       <h1 className="text-4xl text-center mb-5 mt-10 text-white">
-        I NOSTRI PRODOTTI
+        {language === "it" ? "I NOSTRI PRODOTTI" : "OUR PRODUCTS "}
       </h1>
       <motion.div
         variants={containerVariants}

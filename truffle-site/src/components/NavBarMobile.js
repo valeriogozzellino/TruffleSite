@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import Logo from "../img/logoTruffle2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import { useLanguage } from "../hook/LanguagesContext";
 
 const NavBarMobile = ({ current }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, toggleLanguage } = useLanguage(); // Usa toggleLanguage dal contesto
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   const handleNavigation = (root) => {
     window.location.href = root;
   };
@@ -61,28 +64,41 @@ const NavBarMobile = ({ current }) => {
               <span
                 onClick={() => handleNavigation("/booked")}
                 className="text-white hover:underline">
-                CACCIA AL TARTUFO
+                {language === "it" ? "CACCIA AL TARTUFO" : "TRUFFLE HUNT"}
               </span>
             </li>
             <li>
               <span
                 onClick={() => handleNavigation("/shop")}
                 className="text-white hover:underline">
-                NEGOZIO
+                {language === "it" ? "NEGOZIO" : "SHOP"}
               </span>
             </li>
             <li>
               <span
                 onClick={() => handleNavigation("/about")}
                 className="text-white hover:underline">
-                CHI SIAMO
+                {language === "it" ? "CHI SIAMO" : "ABOUT"}
               </span>
             </li>
             <li>
               <span
                 onClick={() => handleNavigation("/contact")}
                 className="text-white hover:underline">
-                CONTATTI
+                {language === "it" ? "CONTATTI" : "CONTACT"}
+              </span>
+            </li>
+            <li>
+              <span
+                onClick={toggleLanguage} // Usa direttamente toggleLanguage
+                className="text-white hover:underline">
+                <div className="h-[30px] w-[30px]">
+                  {language === "en" ? (
+                    <img src="../img/FlagItaly.svg" alt="italy flag" />
+                  ) : (
+                    <img src="../img/englandFlag.svg" alt="england flag" />
+                  )}
+                </div>
               </span>
             </li>
           </ul>

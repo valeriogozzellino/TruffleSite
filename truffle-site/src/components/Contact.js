@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
+import { useLanguage } from "../hook/LanguagesContext";
 const Contact = () => {
+  const { language } = useLanguage();
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -79,7 +81,11 @@ const Contact = () => {
         (error) => {
           console.log(error.text);
           setLoading(false);
-          alert("Si è verificato un errore durante l'invio della mail.");
+          if (language === "it") {
+            alert("Si è verificato un errore durante l'invio della mail.");
+          } else {
+            alert("An error occurred while sending the email.");
+          }
         }
       );
   };
@@ -92,7 +98,7 @@ const Contact = () => {
         <div id="input" className="flex flex-col space-y-4 w-full md:w-2/3">
           <div className="flex flex-col">
             <label htmlFor="name" className="text-lg font-semibold">
-              Nome:
+              {language === "it" ? "Nome:" : "Name:"}
             </label>
             <input
               type="text"
@@ -104,7 +110,7 @@ const Contact = () => {
           </div>
           <div className="flex flex-col">
             <label htmlFor="surname" className="text-lg font-semibold">
-              Cognome:
+              {language === "it" ? "Cognome:" : "Surname:"}
             </label>
             <input
               type="text"
@@ -128,7 +134,12 @@ const Contact = () => {
           </div>
         </div>
         <div className="w-full md:w-1/3">
-          <p className="text-lg font-semibold mb-2">A COSA SEI INTERESSATO?:</p>
+          <p className="text-lg font-semibold mb-2">
+            {" "}
+            {language === "it"
+              ? "A COSA SEI INTERESSATO?:"
+              : "WHAT ARE YOU INTERESTED IN?"}
+          </p>
           <ul className="list-none space-y-2">
             <li>
               <label className="inline-flex items-center">
@@ -139,7 +150,9 @@ const Contact = () => {
                   checked={interests.cacciaAlTartufo}
                   onChange={handleCheckboxChange}
                 />
-                <span className="ml-2">CACCIA AL TARTUFO</span>
+                <span className="ml-2">
+                  {language === "it" ? "CACCIA AL TARTUFO" : "TRUFFLE HUNTING"}
+                </span>
               </label>
             </li>
             <li>
@@ -151,7 +164,9 @@ const Contact = () => {
                   checked={interests.acquistareTartufi}
                   onChange={handleCheckboxChange}
                 />
-                <span className="ml-2">ACQUISTARE TARTUFI</span>
+                <span className="ml-2">
+                  {language === "it" ? "ACQUISTARE TARTUFI" : "SHOP TRUFFLES"}
+                </span>
               </label>
             </li>
             <li>
@@ -163,7 +178,9 @@ const Contact = () => {
                   checked={interests.informazioni}
                   onChange={handleCheckboxChange}
                 />
-                <span className="ml-2">INFORMAZIONI</span>
+                <span className="ml-2">
+                  {language === "it" ? "INFORMAZIONI" : "INFORMATION"}
+                </span>
               </label>
             </li>
           </ul>
@@ -171,7 +188,7 @@ const Contact = () => {
       </div>
       <div className="flex flex-col items-center mt-8">
         <label htmlFor="message" className="text-lg font-semibold">
-          Messaggio:
+          {language === "it" ? "Messaggio:" : "Message:"}
         </label>
         <textarea
           id="message"
@@ -187,16 +204,18 @@ const Contact = () => {
             whileTap={{ scale: 0.9 }}
             onClick={handleSubmit}
             className="bg-custom-brown-dark hover:bg-custom-brown-dark-hover text-white font-bold py-2 px-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
-            INVIA
+            {language === "it" ? "INVIA" : "SEND"}
           </motion.button>
         ) : (
-          <p>Invio in corso...</p>
+          <p>{language === "it" ? "Invio in corso..." : "Sending..."}</p>
         )}
       </div>
 
       {success && (
         <div className="fixed top-0 z-10 left-0 right-0 bg-green-500 text-white text-center p-4 rounded-b-lg">
-          Richiesta inviata con successo!
+          {language === "it"
+            ? "Richiesta inviata con successo"
+            : "Request sent successfully"}
         </div>
       )}
     </div>

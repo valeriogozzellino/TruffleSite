@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../img/logoTruffle2.png";
 import { useScrollDirection } from "../hook/UseScroollDirection";
-
+import { useLanguage } from "../hook/LanguagesContext";
 const NavBar = ({ current }) => {
   const scrollDirection = useScrollDirection();
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { language, toggleLanguage } = useLanguage(); // Usa toggleLanguage dal contesto
   const handleNavigation = (root) => {
     window.location.href = root;
   };
@@ -45,28 +45,41 @@ const NavBar = ({ current }) => {
               current === "/booked" ? "underline" : ""
             }`}
             onClick={() => handleNavigation("/booked")}>
-            CACCIA AL TARTUFO
+            {language === "it" ? "CACCIA AL TARTUFO" : "TRUFFLE HUNT"}
           </span>
           <span
             className={`flex flex-col justify-center m-5 text-2xl hover:underline hover:-translate-y-1 ${
               current === "/shop" ? "underline" : ""
             }`}
             onClick={() => handleNavigation("/shop")}>
-            NEGOZIO
+            {language === "it" ? "NEGOZIO" : "SHOP"}
           </span>
           <span
             className={`flex flex-col justify-center m-5 text-2xl hover:underline hover:-translate-y-1 ${
               current === "/about" ? "underline" : ""
             }`}
             onClick={() => handleNavigation("/about")}>
-            CHI SIAMO
+            {language === "it" ? "CHI SIAMO" : "ABOUT"}
           </span>
           <span
             className={`flex flex-col justify-center m-5 text-2xl hover:underline hover:-translate-y-1 ${
               current === "/contact" ? "underline" : ""
             }`}
             onClick={() => handleNavigation("/contact")}>
-            CONTATTI
+            {language === "it" ? "CONTATTI" : "CONTACT"}
+          </span>
+          <span
+            className={`flex flex-col justify-center m-5 hover:underline hover:-translate-y-1 ${
+              current === "/contact" ? "underline" : ""
+            }`}
+            onClick={toggleLanguage}>
+            <div className="h-[30px] w-[30px]">
+              {language === "en" ? (
+                <img src="../img/FlagItaly.svg" alt="italy flag" />
+              ) : (
+                <img src="../img/englandFlag.svg" alt="england flag" />
+              )}
+            </div>
           </span>
         </div>
       </div>

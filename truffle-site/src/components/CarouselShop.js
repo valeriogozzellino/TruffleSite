@@ -1,18 +1,29 @@
 import React from "react";
 import Slider from "react-slick";
 import { dataTruffle } from "../utils/dataTruffle";
-import { useState } from "react";
+import { englishData } from "../utils/dataTruffleEn";
+import { useState, useEffect } from "react";
 import ManageQuantity from "../atoms/ManageQuantity";
+import { useLanguage } from "../hook/LanguagesContext";
 
 const CarouselShop = () => {
   const [showMore, setShowMore] = React.useState(false);
-  const elements = dataTruffle;
+  const [quantityVisible, setQuantityVisible] = useState(false);
+  const [quantity, setQuantity] = useState(10);
+  const [elements, setElements] = useState(dataTruffle);
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    if (language === "it") {
+      setElements(dataTruffle);
+    } else {
+      setElements(englishData);
+    }
+  }, [language]);
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
-  const [quantityVisible, setQuantityVisible] = useState(false);
-  const [quantity, setQuantity] = useState(10);
 
   const openQuantity = () => {
     setQuantityVisible(!quantityVisible); // Toggle visibility state
@@ -33,17 +44,22 @@ const CarouselShop = () => {
         },
       },
     ],
+    beforeChange: (current, next) => {
+      if (quantityVisible) {
+        setQuantityVisible(false); // Chiudi "Manage Quantity" quando si cambia slide
+      }
+    },
   };
 
   return (
-    <div className="flex flex-col items-center bkImageShop  py-8 mb-5">
+    <div className="flex flex-col items-center bkImageShop py-8 mb-5">
       <Slider {...settings} className="w-2/3">
         {elements.map((element, index) => (
           <div
             key={index}
             className="flex text-white flex-col items-center mb-5 px-3">
             <div className="h-[100px]">
-              <h3 className=" outlined-title text-xl text-center py-3">
+              <h3 className="outlined-title text-xl text-center py-3">
                 <b>{element.title}</b>
               </h3>
             </div>

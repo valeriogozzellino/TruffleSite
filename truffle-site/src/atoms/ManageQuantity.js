@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-
+import { useLanguage } from "../hook/LanguagesContext";
 const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
+  const { language } = useLanguage();
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -27,7 +28,12 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
   return (
     <div className="flex flex-col border rounded shadow mt-4 w-full items-center bg-custom-brown-light">
       <div className="m-3">
-        <p> SELECT QUANTITY AND YOU WILL RECEIVE AN EMAIL ASAP</p>
+        <p>
+          {" "}
+          {language === "it"
+            ? "SELEZIONA LA QUANTITA' E RICEVERAI UNA MAIL IL PRIMA POSSIBILE"
+            : "SELECT QUANTITY AND YOU WILL RECEIVE AN EMAIL AS SOON AS POSSIBLE"}
+        </p>
       </div>
       <div className="flex flex-row space-x-4">
         <button
@@ -49,12 +55,12 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
             setQuantityVisible(false); // Nascondi il componente di gestione quantità
           }}
           className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5  rounded shadow-xl">
-          Annulla
+          {language === "it" ? "Annulla" : "Delete"}
         </button>
         <button
           onClick={handleConfirmClick}
           className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5  rounded shadow-xl">
-          Conferma
+          {language === "it" ? "Conferma" : "Confirm"}
         </button>
       </div>
 
@@ -75,7 +81,7 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
             </div>
             <div className="flex flex-col px-3 ">
               <label className="text-lg font-semibold" htmlFor="phone">
-                Numero di Telefono:
+                {language === "it" ? "Numero di Telefono" : "Telephon Number"}
               </label>
               <input
                 type="tel"
@@ -87,7 +93,7 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
             </div>
             <div className="flex flex-col px-3 ">
               <label className="text-lg font-semibold" htmlFor="address">
-                Address:
+                {language === "it" ? "Indirizzo:" : "Address:"}
               </label>
               <input
                 type="text"
@@ -99,14 +105,15 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
             </div>
             <div>
               <p className="text-lg font-semibold">
-                Prezzo Totale: <span className="text-xl">{price}€</span>
+                {language === "it" ? "Prezzo Totale:" : "Total Price:"}{" "}
+                <span className="text-xl">{price}€</span>
               </p>
             </div>
             <div className="w-full flex justify-center">
               <button
                 onClick={handleBuyClick}
                 className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 w-2/3 rounded shadow-xl">
-                Conferma Acquisto
+                {language === "it" ? "Conferma" : "Confirm"}
               </button>
             </div>
           </div>

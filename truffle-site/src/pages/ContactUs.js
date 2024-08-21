@@ -3,8 +3,9 @@ import Contact from "../components/Contact";
 import NavBar from "../components/NavBar";
 import NavBarMobile from "../components/NavBarMobile";
 import Footer from "../components/Footer";
-
+import { useLanguage } from "../hook/LanguagesContext";
 const ContactUs = () => {
+  const { language } = useLanguage();
   return (
     <div className="colored-background">
       <div>
@@ -14,12 +15,19 @@ const ContactUs = () => {
         <NavBarMobile current={"/"} />
       </div>
       <div className="flex flex-col pt-32 justify-center items-center ">
-        <h1 className="text-4xl text-center mb-5 text-white">Contact Us</h1>
+        <h1 className="text-4xl text-center mb-5 text-white">
+          {" "}
+          {language === "it" ? "Contattaci" : "Contact Us"}
+        </h1>
         <p className=" text-center  text-white">
-          Fill out the form below to get in touch with us.
+          {language === "it"
+            ? "Compila il form sottostante per metterti in contatto con noi."
+            : "Fill out the form below to get in touch with us."}
         </p>
         <p className=" text-center mb-5 text-white">
-          We will respond as soon as possible.
+          {language === "it"
+            ? "Risponderemo il prima possibile."
+            : "We will respond as soon as possible."}
         </p>
         <Contact />
       </div>
