@@ -101,3 +101,27 @@ p {
   background: #000;
   opacity: 0.5;
 } */
+
+/*
+barra overflow
+*/
+/* Personalizza la barra di scorrimento verticale */
+::-webkit-scrollbar {
+  width: 10px; /* Larghezza della barra di scorrimento */
+}
+
+/* Traccia della barra di scorrimento */
+::-webkit-scrollbar-track {
+  background: #f1f1f169; /* Colore di sfondo della traccia */
+}
+
+/* Maniglia della barra di scorrimento */
+::-webkit-scrollbar-thumb {
+  background: rgba(122, 94, 75, 1); /* Colore della maniglia */
+  border-radius: 5px; /* Angoli arrotondati */
+}
+
+/* Hover sulla maniglia della barra di scorrimento */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Colore della maniglia quando si passa sopra con il mouse */
+}
