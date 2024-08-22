@@ -40,7 +40,7 @@ const ContactBooked = () => {
       from_email: email,
       to_email: "milotruffle10@gmail.com",
       subject: "Richiesta PRENOTAZIONE CACCIA AL TARTUFO",
-      message: `${message}`,
+      message: `${message} \n Numero di persone: ${numeroPersone} \n Nome: ${name} \n Allergie: ${allergie}`,
     };
 
     emailjs
@@ -56,6 +56,9 @@ const ContactBooked = () => {
           setLoading(false);
           setSuccess(true);
           setEmail("");
+          setNumeroPersone(1);
+          setName("");
+          setAllergie("");
           setMessage("");
           setTimeout(() => setSuccess(false), 5000); // Hide the popup after 5 seconds
         },
