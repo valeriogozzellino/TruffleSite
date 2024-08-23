@@ -48,7 +48,7 @@ const Content = () => {
           <h1 className="text-4xl text-center mb-5 text-white">
             {section.title}
           </h1>
-          <div className="flex h-[500px] flex-row ">
+          <div className="flex h-[550px] flex-row ">
             {section.imgPosition === "left" && (
               <div className="md:w-1/2">
                 <img

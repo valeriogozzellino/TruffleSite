@@ -31,9 +31,9 @@ const Booked = () => {
           {content.title}
         </h1>
         <img
-          src="../img/SfondoCacciaTartufo.png"
+          src="../img/img4.png"
           alt="truffle"
-          className="h-[400px] md:h-[600px] w-4/5 mx-auto rounded-lg shadow-md"
+          className="h-[400px] md:h-[700px] w-4/5 mx-auto rounded-lg shadow-md"
         />
       </div>
       <div className="flex flex-col justify-center items-center mt-10">

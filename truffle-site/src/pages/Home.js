@@ -30,7 +30,7 @@ const Home = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     arrows: false, // Disabilita le frecce di navigazione
   };
 
@@ -43,35 +43,44 @@ const Home = () => {
         <NavBarMobile current={"/"} />
       </div>
 
-      <Slider {...settings} className="pt-28 md:pt-0 mb-7">
-        <div>
-          <video autoPlay loop muted className="w-full h-[400px] md:h-screen">
-            <source src={videoCaccia} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div>
-          <img
-            src="../img/tartufiVENDITA.png"
-            alt="immagine prova"
-            className="w-full  h-[400px] md:h-screen"
-          />
-        </div>
-        <div>
-          <img
-            src="../img/IMG_4397.png"
-            alt="immagine prova"
-            className="w-full h-[400px] md:h-screen"
-          />
-        </div>
-        <div>
-          <img
-            src="../img/IMG_4881.jpg"
-            alt="immagine prova"
-            className="w-full h-[400px] md:h-screen"
-          />
-        </div>
-      </Slider>
+      <div className="flex flex-row justify-center">
+        <Slider {...settings} className="pt-28  w-full md:w-full md:pt-0 mb-7">
+          <div>
+            <img
+              src="../img/img1.png"
+              alt="immagine prova"
+              className="w-full  h-[400px] md:h-screen"
+            />
+          </div>
+          <div>
+            <img
+              src="../img/img2.png"
+              alt="immagine prova"
+              className="w-full h-[400px] md:h-screen"
+            />
+          </div>
+          <div>
+            <img
+              src="../img/img5.png"
+              alt="immagine prova"
+              className="w-full h-[400px] md:h-screen"
+            />
+          </div>
+          <div>
+            <img
+              src="../img/img7.png"
+              alt="immagine prova"
+              className="w-full h-[400px] md:h-screen"
+            />
+          </div>
+          <div>
+            <video autoPlay loop muted className="w-full h-[400px] md:h-screen">
+              <source src={videoCaccia} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </Slider>
+      </div>
 
       <div className="hidden md:block">
         <Content />
