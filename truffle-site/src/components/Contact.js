@@ -48,19 +48,18 @@ const Contact = () => {
       .join(", ");
 
     const templateParams = {
-      from_name: `${name} ${surname}`,
+      nome: `${name} ${surname} ${email}`,
       from_email: email,
-      to_email: "milotruffle10@gmail.com",
-      subject: "Richiesta contatti sito",
+      subject: "Richiesta CONTATTI SITO",
       message: `${message}\nInteressi: ${selectedInterests}`,
     };
 
     emailjs
       .send(
-        "service_i7vu515",
-        "template_jc38hsi",
+        "service_xzkwixu",
+        "template_7e4e2r9",
         templateParams,
-        "mcJ4_qCEU_GK0iRCt"
+        "uR9nBHO2ncwAu9Ilu"
       )
       .then(
         (result) => {

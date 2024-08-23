@@ -12,6 +12,10 @@ const ContactBooked = () => {
   const [isLoading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [name, setName] = useState("");
+  const [interests, setInterests] = useState({
+    conDegustazione: false,
+    senzaDegustazione: false,
+  });
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -32,23 +36,36 @@ const ContactBooked = () => {
     setNumeroPersone((prev) => (prev > 1 ? prev - 1 : 1));
   };
 
+  const handleCheckboxChange = (event) => {
+    setInterests({ ...interests, [event.target.name]: event.target.checked });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    const selectedInterests = Object.entries(interests)
+      .filter(([key, value]) => value)
+      .map(([key]) =>
+        key
+          .replace(/([A-Z])/g, " $1")
+          .toUpperCase()
+          .trim()
+      )
+      .join(", ");
 
     const templateParams = {
-      from_email: email,
-      to_email: "milotruffle10@gmail.com",
+      from_email: email, // Assicurati che questo sia l'email del mittente
       subject: "Richiesta PRENOTAZIONE CACCIA AL TARTUFO",
-      message: `${message} \n Numero di persone: ${numeroPersone} \n Nome: ${name} \n Allergie: ${allergie}`,
+      message: `${message}\nAllergie: ${allergie}\nNumero di Persone: ${numeroPersone}\nTipologia: ${selectedInterests}`,
+      nome: `${name} ${email}`, // Cambiato per corrispondere all'EmailJS template
     };
 
     emailjs
       .send(
-        "service_i7vu515",
-        "template_jc38hsi",
+        "service_xzkwixu",
+        "template_7e4e2r9",
         templateParams,
-        "mcJ4_qCEU_GK0iRCt"
+        "uR9nBHO2ncwAu9Ilu"
       )
       .then(
         (result) => {
@@ -66,8 +83,10 @@ const ContactBooked = () => {
           console.log(error.text);
           setLoading(false);
           if (language === "it") {
+            console.error("Failed to send email:", error);
             alert("Si è verificato un errore durante l'invio della mail.");
           } else {
+            console.error("Failed to send email:", error);
             alert("An error occurred while sending the email.");
           }
         }
@@ -107,7 +126,39 @@ const ContactBooked = () => {
             </button>
           </div>
         </div>
+        <div className="w-full md:w-full">
+          <ul className="list-none space-y-2">
+            <li>
+              <label className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-gray-600"
+                  name="conDegustazione"
+                  checked={interests.conDegustazione}
+                  onChange={handleCheckboxChange}
+                />
+                <span className="ml-2">
+                  {language === "it" ? "CON DEGUSTAZIONE" : "WITH TASTING"}
+                </span>
+              </label>
+            </li>
 
+            <li>
+              <label className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-gray-600"
+                  name="senzaDegustazione"
+                  checked={interests.senzaDegustazione}
+                  onChange={handleCheckboxChange}
+                />
+                <span className="ml-2">
+                  {language === "it" ? "SENZA DEGUSTAZIONE" : "WITHOUT TASTING"}
+                </span>
+              </label>
+            </li>
+          </ul>
+        </div>
         <div className="flex flex-col space-y-2">
           <label htmlFor="name" className="text-lg font-semibold">
             {language === "it" ? "Nome:" : "Name:"}

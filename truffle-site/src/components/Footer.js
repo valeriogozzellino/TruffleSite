@@ -1,5 +1,10 @@
 import React from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faPhone,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { useLanguage } from "../hook/LanguagesContext";
 const Footer = () => {
   const { language } = useLanguage();
@@ -38,13 +43,24 @@ const Footer = () => {
           {language === "it" ? "Caccia al Tartufo" : "Truffle Hunting"}
         </a>
       </div>
-      <div id="sezContatti" className="w-1/3">
+      <div id="sezContatti" className="w-1/3 flex flex-col items-center">
         <p className="text-white m-3">
-          <b>Contattaci</b>
+          <b>{language === "it" ? "Contattaci" : "Contact Us"}</b>
         </p>
-        <p className="text-white ">Email: miloTruffle10@gmail.com</p>
-        <p className="text-white">Telefono: +39 333 333 3333</p>
-        <p className="text-white">Indirizzo: Via Roma 1, 00000, Italia</p>
+        <a href="mailto:miloTruffle10@gmail.com" className="text-white">
+          <FontAwesomeIcon icon={faEnvelope} />
+        </a>
+        <a href="tel:+393333333333" className="text-white">
+          <FontAwesomeIcon icon={faPhone} />{" "}
+          {/* {language === "it" ? "Telefono" : "Phone"} */}
+        </a>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Via+Roma+1,+00000,+Italia"
+          className="text-white"
+          target="_blank"
+          rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faLocationDot} />
+        </a>
       </div>
     </div>
   );

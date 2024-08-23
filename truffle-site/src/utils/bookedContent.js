@@ -11,12 +11,7 @@ export const bookedContentIt = {
         "La tua guida sarà un esperto cercatore locale, accompagnato da un cane addestrato nella ricerca dei tartufi.",
     },
     {
-      title: "Attrezzatura di Ricerca:",
-      description:
-        "Tutta l'attrezzatura necessaria per la ricerca dei tartufi sarà fornita.",
-    },
-    {
-      title: "Assaggio di Tartufo:",
+      title: "Degustazione del Tartufo:",
       description:
         "Al termine dell'escursione, potrai gustare un assaggio di tartufo fresco, accompagnato da un bicchiere di vino locale.",
     },
@@ -38,11 +33,6 @@ export const bookedContentEn = {
       title: "Expert Guide and Trifolau Dog:",
       description:
         "Your guide will be a local expert truffle hunter, accompanied by a dog trained in truffle hunting.",
-    },
-    {
-      title: "Research Equipment:",
-      description:
-        "All necessary equipment for truffle hunting will be provided.",
     },
     {
       title: "Truffle Tasting:",
