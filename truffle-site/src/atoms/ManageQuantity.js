@@ -1,29 +1,96 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
 import { useLanguage } from "../hook/LanguagesContext";
-const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
+
+const ManageQuantity = ({
+  quantity,
+  setQuantity,
+  setQuantityVisible,
+  truffle,
+}) => {
   const { language } = useLanguage();
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [isLoading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [addNote, setAddNote] = useState(false);
+
+  const handleAddNote = () => {
+    setAddNote(!addNote);
+  };
+
   const handleConfirmClick = () => {
     console.log("Confirm");
     setIsConfirmed(true);
   };
 
-  const decrementaQuantita = () => {
-    setQuantity((prev) => (prev > 10 ? prev - 10 : 10));
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
-  const handleBuyClick = () => {
-    console.log("Email: ", email);
-    console.log("Phone: ", phone);
-    console.log("Address: ", address);
-    console.log("Quantity: ", quantity);
-    setIsConfirmed(false);
-    setQuantityVisible(false);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
-  const price = quantity * 10;
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const templateParams = {
+      nome: `${name}  ${email}`,
+      from_email: email,
+      subject: "Richiesta ACQUISTO SITO",
+      message: `Tartufo: ${truffle}\nMessaggio: ${message}\nQuantità: ${quantity}\nTelefono: ${phone}\nIndirizzo: ${address}`,
+    };
+
+    emailjs
+      .send(
+        "service_xzkwixu",
+        "template_7e4e2r9",
+        templateParams,
+        "uR9nBHO2ncwAu9Ilu"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setLoading(false);
+          setSuccess(true);
+          setName("");
+          setEmail("");
+          setMessage("");
+          setPhone("");
+          setAddress("");
+          setQuantity(10);
+          setTimeout(() => setSuccess(false), 5000); // Hide the popup after 5 seconds
+        },
+        (error) => {
+          console.log(error.text);
+          setLoading(false);
+          if (language === "it") {
+            alert("Si è verificato un errore durante l'invio della mail.");
+          } else {
+            alert("An error occurred while sending the email.");
+          }
+        }
+      );
+  };
 
   return (
     <div className="flex flex-col border rounded shadow mt-4 w-full items-center bg-custom-brown-light">
@@ -35,18 +102,17 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
             : "SELECT QUANTITY AND YOU WILL RECEIVE AN EMAIL AS SOON AS POSSIBLE"}
         </p>
       </div>
-      <div className="flex flex-row space-x-4">
-        <button
-          onClick={() => decrementaQuantita()}
-          className="text-white border w-7 rounded-xl">
-          -
-        </button>
-        <p className="text-white">{quantity}g</p>
-        <button
-          onClick={() => setQuantity(quantity + 10)}
-          className="text-white border w-7 rounded-xl">
-          +
-        </button>
+      <div className="flex flex-col items-center space-x-4">
+        <label className="text-lg" htmlFor="quantity">
+          {language === "it" ? "Quantità in Grammi:" : "Quantity in Grams:"}
+        </label>
+        <input
+          type="number"
+          id="quantity"
+          className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
       </div>
       <div className="flex flex-row w-full space-x-2 mb-2 justify-center">
         <button
@@ -67,6 +133,32 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
       {isConfirmed && (
         <div className=" mb-5 mt-5 w-full">
           <div className="flex flex-col  space-y-4">
+            <div className="flex flex-row">
+              <div className="flex flex-col w-1/2 px-3 ">
+                <label className="text-lg font-semibold" htmlFor="email">
+                  Nome:
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
+                  value={name}
+                  onChange={handleNameChange}
+                />
+              </div>
+              <div className="flex flex-col w-1/2 px-3 ">
+                <label className="text-lg font-semibold" htmlFor="phone">
+                  {language === "it" ? "Telefono" : "Phone"}
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                />
+              </div>
+            </div>
             <div className="flex flex-col px-3 ">
               <label className="text-lg font-semibold" htmlFor="email">
                 Email:
@@ -76,19 +168,7 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
                 id="email"
                 className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col px-3 ">
-              <label className="text-lg font-semibold" htmlFor="phone">
-                {language === "it" ? "Numero di Telefono" : "Telephon Number"}
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={handleEmailChange}
               />
             </div>
             <div className="flex flex-col px-3 ">
@@ -100,23 +180,53 @@ const ManageQuantity = ({ quantity, setQuantity, setQuantityVisible }) => {
                 id="address"
                 className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
                 value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                onChange={handleAddressChange}
               />
             </div>
-            <div>
-              <p className="text-lg font-semibold">
-                {language === "it" ? "Prezzo Totale:" : "Total Price:"}{" "}
-                <span className="text-xl">{price}€</span>
-              </p>
-            </div>
-            <div className="w-full flex justify-center">
+            <div className="flex justify-between items-center">
               <button
-                onClick={handleBuyClick}
-                className="bg-custom-brown-dark hover:bg-white hover:text-black text-white font-bold py-2 px-4 mt-5 w-2/3 rounded shadow-xl">
-                {language === "it" ? "Conferma" : "Confirm"}
+                onClick={handleAddNote}
+                className="bg-custom-brown-dark text-white py-2 px-4 ml-3 rounded-lg shadow hover:bg-custom-brown-dark-hover focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
+                {addNote ? "Elimina Messaggio" : "Aggiungi Messaggio"}
               </button>
             </div>
+
+            {addNote && (
+              <div className="flex flex-col items-center">
+                <label htmlFor="message" className="text-lg font-semibold">
+                  {language === "it" ? "Messaggio:" : "Message:"}
+                </label>
+                <textarea
+                  id="message"
+                  className="w-full md:w-3/4 h-[100px] rounded-lg p-3 text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-custom-brown-dark"
+                  value={message}
+                  onChange={handleMessageChange}
+                />
+              </div>
+            )}
+
+            <div className="flex justify-center mt-8">
+              {!isLoading ? (
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={handleSubmit}
+                  className="bg-custom-brown-dark hover:bg-custom-brown-dark-hover text-white font-bold py-2 px-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
+                  {language === "it" ? "INVIA" : "SEND"}
+                </motion.button>
+              ) : (
+                <p>{language === "it" ? "Invio in corso..." : "Sending..."}</p>
+              )}
+            </div>
           </div>
+        </div>
+      )}
+
+      {success && (
+        <div className="fixed top-0 z-10 left-0 right-0 bg-green-500 text-white text-center p-4 rounded-b-lg">
+          {language === "it"
+            ? "Richiesta inviata con successo"
+            : "Request sent successfully"}
         </div>
       )}
     </div>

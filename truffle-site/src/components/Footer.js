@@ -20,8 +20,8 @@ const Footer = () => {
           className={`overflow-auto h-20 text-white m-2 custom-scroll`}
           style={{ transition: "height 0.5s ease" }}>
           {language === "it"
-            ? "Simone Gulino e Giulia Canton sono una coppia appassionata di tartufi. Insieme ai loro due fedeli cani, Milo e Mia, si dedicano alla ricerca di tartufi nelle rigogliose campagne italiane. Simone e Giulia non solo cercano tartufi per passione, ma offrono anche esperienze guidate, permettendo agli entusiasti di esplorare il mondo affascinante della tartuficoltura insieme a loro."
-            : "Simone Gulino and Giulia Canton are a couple passionate about truffle hunting. Together with their two loyal dogs, Milo and Mia, they search for truffles in the lush Italian countryside. Simone and Giulia do not only hunt truffles out of passion, but they also offer guided experiences, allowing enthusiasts to delve into the fascinating world of truffle hunting alongside them."}
+            ? "Simone Gulino e Giulia Canton sono una coppia appassionata di tartufi. Insieme ai loro due fedeli cani, Milo e Stella, si dedicano alla ricerca di tartufi nelle rigogliose campagne italiane. Simone e Giulia non solo cercano tartufi per passione, ma offrono anche esperienze guidate, permettendo agli entusiasti di esplorare il mondo affascinante della tartuficoltura insieme a loro."
+            : "Simone Gulino and Giulia Canton are a couple passionate about truffle hunting. Together with their two loyal dogs, Milo and Stella, they search for truffles in the lush Italian countryside. Simone and Giulia do not only hunt truffles out of passion, but they also offer guided experiences, allowing enthusiasts to delve into the fascinating world of truffle hunting alongside them."}
         </p>
       </div>
       <div

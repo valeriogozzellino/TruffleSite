@@ -54,6 +54,7 @@ const TruffleItem = ({ title, description, imgUrl }) => {
           quantity={quantity}
           setQuantity={setQuantity}
           setQuantityVisible={setQuantityVisible}
+          truffle={title}
         />
       )}
     </div>

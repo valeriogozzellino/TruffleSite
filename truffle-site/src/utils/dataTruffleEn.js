@@ -21,6 +21,6 @@ export const englishData = [
     title: "NERO INVERNALE (BRUMALE)",
     description:
       "Similar to the Precious Black Truffle, but with a less intense aroma, this truffle is harvested in winter and used as a more economical alternative in winter dishes.",
-    imgUrl: "../img/NeroInvernale.png",
+    imgUrl: "../img/neroInvernaleBrumale.png",
   },
 ];

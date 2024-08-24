@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import NavBarMobile from "../components/NavBarMobile";
-import videoCaccia from "../video/cacciaTartufo.mp4";
 import Content from "../components/Content";
 import ContentMobile from "../components/ContentMobile";
 import Footer from "../components/Footer";
@@ -54,7 +53,7 @@ const Home = () => {
           </div>
           <div>
             <img
-              src="../img/img2.png"
+              src="../img/img2.jpg"
               alt="immagine prova"
               className="w-full h-[400px] md:h-screen"
             />
@@ -68,17 +67,17 @@ const Home = () => {
           </div>
           <div>
             <img
-              src="../img/img7.png"
+              src="../img/img7.jpg"
               alt="immagine prova"
               className="w-full h-[400px] md:h-screen"
             />
           </div>
-          <div>
-            <video autoPlay loop muted className="w-full h-[400px] md:h-screen">
+          {/* <div>
+            <video muted className="w-full h-[400px] md:h-screen">
               <source src={videoCaccia} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-          </div>
+          </div> */}
         </Slider>
       </div>
 

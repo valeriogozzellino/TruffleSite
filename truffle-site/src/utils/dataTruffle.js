@@ -21,6 +21,6 @@ export const dataTruffle = [
     title: "NERO INVERNALE (BRUMALE)",
     description:
       "Simile al Nero Pregiato, ma con un aroma meno intenso, questo tartufo è raccolto in inverno e usato come alternativa più economica nei piatti invernali​",
-    imgUrl: "../img/NeroInvernale.png",
+    imgUrl: "../img/neroInvernaleBrumale.png",
   },
 ];

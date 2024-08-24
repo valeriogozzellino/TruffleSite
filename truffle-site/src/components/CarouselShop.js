@@ -88,6 +88,7 @@ const CarouselShop = () => {
                   quantity={quantity}
                   setQuantity={setQuantity}
                   setQuantityVisible={setQuantityVisible}
+                  truffle={element.title}
                 />
               )}
             </div>
