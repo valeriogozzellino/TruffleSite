@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "emailjs-com";
 import { useLanguage } from "../hook/LanguagesContext";
 
@@ -25,7 +25,6 @@ const ManageQuantity = ({
   };
 
   const handleConfirmClick = () => {
-    console.log("Confirm");
     setIsConfirmed(true);
   };
 
@@ -96,20 +95,19 @@ const ManageQuantity = ({
     <div className="flex flex-col border rounded shadow mt-4 w-full items-center bg-custom-brown-light">
       <div className="m-3">
         <p>
-          {" "}
           {language === "it"
             ? "SELEZIONA LA QUANTITA' E RICEVERAI UNA MAIL IL PRIMA POSSIBILE"
             : "SELECT QUANTITY AND YOU WILL RECEIVE AN EMAIL AS SOON AS POSSIBLE"}
         </p>
       </div>
-      <div className="flex flex-col items-center space-x-4">
+      <div className="flex flex-col items-center">
         <label className="text-lg" htmlFor="quantity">
           {language === "it" ? "Quantità in Grammi:" : "Quantity in Grams:"}
         </label>
         <input
           type="number"
           id="quantity"
-          className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
+          className="w-3/4 mt-1 p-2 rounded-lg border border-gray-300 text-black"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
         />
@@ -130,97 +128,113 @@ const ManageQuantity = ({
         </button>
       </div>
 
-      {isConfirmed && (
-        <div className=" mb-5 mt-5 w-full">
-          <div className="flex flex-col  space-y-4">
-            <div className="flex flex-row">
-              <div className="flex flex-col w-1/2 px-3 ">
+      <AnimatePresence>
+        {isConfirmed && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.5 }}
+            className=" mb-5 mt-5 w-full overflow-hidden">
+            <div className="flex flex-col space-y-4">
+              <div className="flex flex-row">
+                <div className="flex flex-col w-1/2 px-3 ">
+                  <label className="text-lg font-semibold" htmlFor="email">
+                    Nome:
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
+                    value={name}
+                    onChange={handleNameChange}
+                  />
+                </div>
+                <div className="flex flex-col w-1/2 px-3 ">
+                  <label className="text-lg font-semibold" htmlFor="phone">
+                    {language === "it" ? "Telefono" : "Phone"}
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
+                    value={phone}
+                    onChange={handlePhoneChange}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col px-3 ">
                 <label className="text-lg font-semibold" htmlFor="email">
-                  Nome:
+                  Email:
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+              </div>
+              <div className="flex flex-col px-3 ">
+                <label className="text-lg font-semibold" htmlFor="address">
+                  {language === "it" ? "Indirizzo:" : "Address:"}
                 </label>
                 <input
                   type="text"
-                  id="name"
+                  id="address"
                   className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
-                  value={name}
-                  onChange={handleNameChange}
+                  value={address}
+                  onChange={handleAddressChange}
                 />
               </div>
-              <div className="flex flex-col w-1/2 px-3 ">
-                <label className="text-lg font-semibold" htmlFor="phone">
-                  {language === "it" ? "Telefono" : "Phone"}
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
-                  value={phone}
-                  onChange={handlePhoneChange}
-                />
+              <div className="flex justify-between items-center">
+                <button
+                  onClick={handleAddNote}
+                  className="bg-custom-brown-dark text-white py-2 px-4 ml-3 rounded-lg shadow hover:bg-custom-brown-dark-hover focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
+                  {addNote ? "Elimina Messaggio" : "Aggiungi Messaggio"}
+                </button>
               </div>
-            </div>
-            <div className="flex flex-col px-3 ">
-              <label className="text-lg font-semibold" htmlFor="email">
-                Email:
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </div>
-            <div className="flex flex-col px-3 ">
-              <label className="text-lg font-semibold" htmlFor="address">
-                {language === "it" ? "Indirizzo:" : "Address:"}
-              </label>
-              <input
-                type="text"
-                id="address"
-                className="w-full mt-1 p-2 rounded-lg border border-gray-300 text-black"
-                value={address}
-                onChange={handleAddressChange}
-              />
-            </div>
-            <div className="flex justify-between items-center">
-              <button
-                onClick={handleAddNote}
-                className="bg-custom-brown-dark text-white py-2 px-4 ml-3 rounded-lg shadow hover:bg-custom-brown-dark-hover focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
-                {addNote ? "Elimina Messaggio" : "Aggiungi Messaggio"}
-              </button>
-            </div>
 
-            {addNote && (
-              <div className="flex flex-col items-center">
-                <label htmlFor="message" className="text-lg font-semibold">
-                  {language === "it" ? "Messaggio:" : "Message:"}
-                </label>
-                <textarea
-                  id="message"
-                  className="w-full md:w-3/4 h-[100px] rounded-lg p-3 text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-custom-brown-dark"
-                  value={message}
-                  onChange={handleMessageChange}
-                />
-              </div>
-            )}
+              <AnimatePresence>
+                {addNote && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col items-center mt-4">
+                    <label htmlFor="message" className="text-lg font-semibold">
+                      {language === "it" ? "Messaggio:" : "Message:"}
+                    </label>
+                    <textarea
+                      id="message"
+                      className="w-3/4 md:w-3/4 h-[100px] rounded-lg p-3 text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-custom-brown-dark"
+                      value={message}
+                      onChange={handleMessageChange}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-            <div className="flex justify-center mt-8">
-              {!isLoading ? (
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={handleSubmit}
-                  className="bg-custom-brown-dark hover:bg-custom-brown-dark-hover text-white font-bold py-2 px-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
-                  {language === "it" ? "INVIA" : "SEND"}
-                </motion.button>
-              ) : (
-                <p>{language === "it" ? "Invio in corso..." : "Sending..."}</p>
-              )}
+              <div className="flex justify-center mt-8">
+                {!isLoading ? (
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={handleSubmit}
+                    className="bg-custom-brown-dark hover:bg-custom-brown-dark-hover text-white font-bold py-2 px-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-brown-dark">
+                    {language === "it" ? "INVIA" : "SEND"}
+                  </motion.button>
+                ) : (
+                  <p>
+                    {language === "it" ? "Invio in corso..." : "Sending..."}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {success && (
         <div className="fixed top-0 z-10 left-0 right-0 bg-green-500 text-white text-center p-4 rounded-b-lg">

@@ -5,7 +5,7 @@ import { englishData } from "../utils/dataTruffleEn";
 import { useState, useEffect } from "react";
 import ManageQuantity from "../atoms/ManageQuantity";
 import { useLanguage } from "../hook/LanguagesContext";
-
+import { motion, AnimatePresence } from "framer-motion";
 const CarouselShop = () => {
   const [showMore, setShowMore] = React.useState(false);
   const [quantityVisible, setQuantityVisible] = useState(false);
@@ -64,12 +64,16 @@ const CarouselShop = () => {
               </h3>
             </div>
             <img src={element.imgUrl} alt="truffle" className="h-[200px]" />
-            <p
-              className={`${
-                showMore ? "" : "line-clamp-2"
-              } outlined-text bg-custom-brown-opacity rounded-md p-2 py-1`}>
-              {element.description}
-            </p>
+            <motion.div
+              initial={{ height: "auto" }}
+              animate={{ height: showMore ? "auto" : "4rem" }} // Puoi regolare "4rem" per adattare il contenuto
+              transition={{ duration: 0.5 }}
+              style={{ overflow: "hidden" }}>
+              <p
+                className={`outlined-text bg-custom-brown-opacity rounded-md p-2 py-3`}>
+                {element.description}
+              </p>
+            </motion.div>
             <div className="flex flex-col w-full justify-center items-center">
               <button
                 className="text-white underline mt-2"
@@ -83,14 +87,23 @@ const CarouselShop = () => {
                   ORDINA
                 </button>
               )}
-              {quantityVisible && (
-                <ManageQuantity
-                  quantity={quantity}
-                  setQuantity={setQuantity}
-                  setQuantityVisible={setQuantityVisible}
-                  truffle={element.title}
-                />
-              )}
+              <AnimatePresence>
+                {quantityVisible && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full">
+                    <ManageQuantity
+                      quantity={quantity}
+                      setQuantity={setQuantity}
+                      setQuantityVisible={setQuantityVisible}
+                      truffle={element.title}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         ))}

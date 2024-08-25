@@ -3,6 +3,7 @@ import { dataTruffle } from "../utils/dataTruffle";
 import ManageQuantity from "../atoms/ManageQuantity";
 import { useLanguage } from "../hook/LanguagesContext";
 import { englishData } from "../utils/dataTruffleEn";
+import { motion, AnimatePresence } from "framer-motion";
 /**
  * truffle item component
  * @param {string} title
@@ -31,12 +32,16 @@ const TruffleItem = ({ title, description, imgUrl }) => {
         </b>
       </div>
       <img src={imgUrl} alt="truffle" className="h-[250px] w-[250px]" />
-      <p
-        className={`${
-          showMore ? "" : "line-clamp-2"
-        } outlined-text bg-custom-brown-opacity rounded-md text-lg p-2 py-1`}>
-        <b>{description}</b>
-      </p>
+      <motion.div
+        initial={{ height: "auto" }}
+        animate={{ height: showMore ? "auto" : "4rem" }} // Puoi regolare "4rem" per adattare il contenuto
+        transition={{ duration: 0.5 }}
+        style={{ overflow: "hidden" }}>
+        <p
+          className={`outlined-text bg-custom-brown-opacity rounded-md p-2 py-3`}>
+          {description}
+        </p>
+      </motion.div>
       <button
         className="text-white outlined-text underline mt-2"
         onClick={toggleShowMore}>
@@ -49,14 +54,23 @@ const TruffleItem = ({ title, description, imgUrl }) => {
           {language === "it" ? "ORDINA" : "ORDER"}
         </button>
       )}
-      {quantityVisible && (
-        <ManageQuantity
-          quantity={quantity}
-          setQuantity={setQuantity}
-          setQuantityVisible={setQuantityVisible}
-          truffle={title}
-        />
-      )}
+      <AnimatePresence>
+        {quantityVisible && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="w-full">
+            <ManageQuantity
+              quantity={quantity}
+              setQuantity={setQuantity}
+              setQuantityVisible={setQuantityVisible}
+              truffle={title}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
