@@ -59,7 +59,7 @@ const Footer = () => {
           whileHover={{ scale: 1.3 }}
           whileTap={{ scale: 0.8 }}
           className="py-2">
-          <a href="/book" className="text-white hover:underline py-2">
+          <a href="/booked" className="text-white hover:underline py-2">
             <b>{language === "it" ? "Caccia al Tartufo" : "Truffle Hunting"}</b>
           </a>
         </motion.button>
@@ -82,7 +82,7 @@ const Footer = () => {
           whileHover={{ scale: 1.3 }}
           whileTap={{ scale: 0.8 }}
           className="py-2">
-          <a href="tel:+393333333333" className="text-white  text-xl">
+          <a href="tel:+393355490474" className="text-white  text-xl">
             <FontAwesomeIcon icon={faPhone} />{" "}
             {/* {language === "it" ? "Telefono" : "Phone"} */}
           </a>
@@ -92,7 +92,7 @@ const Footer = () => {
           whileTap={{ scale: 0.8 }}
           className="py-2">
           <a
-            href="https://www.google.com/maps/search/?api=1&query=Via+Roma+1,+00000,+Italia"
+            href="https://maps.app.goo.gl/wCfjE4nRKsbncEGH9?g_st=com.google.maps.preview.copy"
             className="text-white text-xl"
             target="_blank"
             rel="noopener noreferrer">

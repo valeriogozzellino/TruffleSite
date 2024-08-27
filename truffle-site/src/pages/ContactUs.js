@@ -17,9 +17,9 @@ const ContactUs = () => {
       <div className="flex flex-col pt-32 justify-center items-center ">
         <h1 className="text-4xl text-center mb-5 text-white">
           {" "}
-          {language === "it" ? "Contattaci" : "Contact Us"}
+          {language === "it" ? "CONTATTACI" : "CONTACT US"}
         </h1>
-        <p className=" text-center  text-white">
+        <p className=" text-center  px-3 text-white">
           {language === "it"
             ? "Compila il form sottostante per metterti in contatto con noi."
             : "Fill out the form below to get in touch with us."}

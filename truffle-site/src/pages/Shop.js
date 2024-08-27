@@ -16,8 +16,8 @@ const Shop = () => {
         <NavBarMobile current={"/shop"} />
       </div>
 
-      <h1 className="text-2xl text-center pt-10 md:pt-32 mb-5 mt-10 text-white">
-        <b>{language === "it" ? "I NOSTRI PRODOTTI" : "OUR PRODUCTS"}</b>
+      <h1 className="text-3xl md:text-4xl text-center mb-8 px-1 pt-5 md:pt-36 text-white">
+        {language === "it" ? "I NOSTRI PRODOTTI" : "OUR PRODUCTS"}
       </h1>
       <div className="hidden md:flex bkImageShop">
         <WindowShop />

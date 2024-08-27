@@ -1,6 +1,6 @@
 // bookedContent.js
 export const bookedContentIt = {
-  title: "Prenota la Tua Esperienza di Ricerca al Tartufo",
+  title: "ESPERIENZE DI RICERCA DEL TARTUFO",
   subtitle: "Vivi un'avventura unica nel cuore delle Langhe e del Monferrato",
   description: `Unisciti a noi per una esperienza indimenticabile nella ricerca del tartufo, un'avventura che ti porterà a esplorare i segreti di antiche foreste e a scoprire le tecniche tradizionali di raccolta. Le nostre esperienze guidate sono disegnate per appassionati di tutte le età e livelli di esperienza, garantendo un momento piacevole e educativo per tutti.`,
   includedTitle: "Cosa è Incluso?",
@@ -13,7 +13,7 @@ export const bookedContentIt = {
     {
       title: "Degustazione del Tartufo:",
       description:
-        "Al termine dell'escursione, potrai gustare un assaggio di tartufo fresco, accompagnato da un bicchiere di vino locale.",
+        "Al termine dell'escursione, potrai gustare un assaggio di tartufo fresco, accompagnato da un bicchiere di vino e prodotti locali.",
     },
     {
       title: "Fotografie dell'Esperienza:",
@@ -24,7 +24,7 @@ export const bookedContentIt = {
 };
 
 export const bookedContentEn = {
-  title: "Book your Hunting Truffle Experience",
+  title: "HUNTING TRUFFLE EXPERIENCE",
   subtitle: "Live a unique adventure in the heart of Langhe and Monferrato",
   description: `Join us for an unforgettable truffle hunting experience, an adventure that will take you to explore the secrets of ancient forests and discover traditional harvesting techniques. Our guided experiences are designed for enthusiasts of all ages and experience levels, ensuring a pleasant and educational moment for everyone.`,
   includedTitle: "What's Included?",
@@ -37,7 +37,7 @@ export const bookedContentEn = {
     {
       title: "Truffle Tasting:",
       description:
-        "At the end of the excursion, you will enjoy a tasting of fresh truffle, accompanied by a glass of local wine.",
+        "At the end of the excursion, you will enjoy a tasting of fresh truffle, accompanied by a glass of local wine and typical local food.",
     },
     {
       title: "Experience Photos:",

@@ -1,12 +1,10 @@
 export const about = [
   {
     title: "LA NOSTRA STORIA",
-    text: `Scoprite con noi il fascino esclusivo della ricerca al tartufo nelle migliori riserve delle <i>Langhe e del Monferrato.</i> <br />
-           Offriamo esperienze di ricerca guidata del tartufo, dove i nostri cani esperti vi porteranno alla scoperta dei preziosi tartufi bianchi e neri, tesori nascosti della nostra terra. Unitevi a una delle nostre escursioni e immergetevi nella tradizione e nella natura, mentre vi guidiamo attraverso boschi incantati alla ricerca del rinomato oro <i>nero e bianco.</i> <br />
-           Ogni ricerca si trasforma in un'avventura indimenticabile, ricca di emozioni e scoperte...`,
+    text: `Siamo un coppia appassionato di tartufi, accompagnati da due fedeli cani addestrati, che esplorano le rigogliose campagne italiane alla ricerca dei preziosi tartufi bianchi e neri. Non ci limitiamo a questa attività per passione, ma offriamo anche esperienze di ricerca guidata, permettendo agli appassionati di scoprire il mondo affascinante della tartuficoltura. Unitevi a noi per un’avventura nelle migliori riserve delle Langhe e del Monferrato, immergendovi nella tradizione e nella natura, mentre vi guidiamo attraverso boschi incantati alla scoperta di questi tesori nascosti.`,
   },
   {
     title: "OUR STORY",
-    text: `Discover with us the exclusive charm of truffle hunting in the best reserves of the Langhe and Monferrato. We offer guided truffle hunting experiences, where our expert dogs will take you to discover the precious white and black truffles, hidden treasures of our land. Join one of our excursions and immerse yourself in tradition and nature, as we guide you through enchanted woods in search of the renowned black and white gold. Each hunt turns into an unforgettable adventure, full of emotions and discoveries...`,
+    text: `We are a passionate truffle-hunting couple, accompanied by two loyal and trained dogs, exploring the lush Italian countryside in search of precious white and black truffles. Our work is driven by passion, but we also offer guided truffle hunting experiences, allowing enthusiasts to discover the fascinating world of truffle cultivation. Join us on an adventure in the finest reserves of the Langhe and Monferrato, immersing yourself in tradition and nature as we guide you through enchanted woods in search of these hidden treasures.`,
   },
 ];
