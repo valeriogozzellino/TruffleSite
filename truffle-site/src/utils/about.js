@@ -1,7 +1,7 @@
 export const about = [
   {
     title: "LA NOSTRA STORIA",
-    text: `Siamo un coppia appassionato di tartufi, accompagnati da due fedeli cani addestrati, che esplorano le rigogliose campagne italiane alla ricerca dei preziosi tartufi bianchi e neri. Non ci limitiamo a questa attività per passione, ma offriamo anche esperienze di ricerca guidata, permettendo agli appassionati di scoprire il mondo affascinante della tartuficoltura. Unitevi a noi per un’avventura nelle migliori riserve delle Langhe e del Monferrato, immergendovi nella tradizione e nella natura, mentre vi guidiamo attraverso boschi incantati alla scoperta di questi tesori nascosti.`,
+    text: `Siamo un coppia appassionata di tartufi, accompagnati da due fedeli cani addestrati, che esplorano le rigogliose campagne italiane alla ricerca dei preziosi tartufi bianchi e neri. Non ci limitiamo a questa attività per passione, ma offriamo anche esperienze di ricerca guidata, permettendo agli appassionati di scoprire il mondo affascinante della tartuficoltura. Unitevi a noi per un’avventura nelle migliori riserve delle Langhe e del Monferrato, immergendovi nella tradizione e nella natura, mentre vi guidiamo attraverso boschi incantati alla scoperta di questi tesori nascosti.`,
   },
   {
     title: "OUR STORY",

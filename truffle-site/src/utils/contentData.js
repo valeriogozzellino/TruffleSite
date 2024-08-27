@@ -17,7 +17,7 @@ export const contentData = [
   },
   {
     title: "LA NOSTRA STORIA",
-    text: "Siamo un coppia appassionato di ricerca al tartufo, accompagnato dai nostri fidati cani, esplorando le campagne italiane alla scoperta dei preziosi tartufi bianchi e neri. Offriamo esperienze guidate nelle migliori riserve delle Langhe e del Monferrato, invitandovi a immergervi nella natura e nella tradizione di questa affascinante attività.",
+    text: "Siamo un coppia appassionata di ricerca al tartufo, accompagnato dai nostri fidati cani, esplorando le campagne italiane alla scoperta dei preziosi tartufi bianchi e neri. Offriamo esperienze guidate nelle migliori riserve delle Langhe e del Monferrato, invitandovi a immergervi nella natura e nella tradizione di questa affascinante attività.",
     buttonText: "SCOPRI DI PIU'",
     imgSrc: "../img/img2.jpg",
     imgPosition: "left",
