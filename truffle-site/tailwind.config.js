@@ -1,18 +1,25 @@
 /** @type {import('tailwindcss').Config} */
-export const content = ["./src/**/*.{js,jsx,ts,tsx}"];
-
-export const theme = {
-  extend: {
-    backgroundColor: {
-      "custom-brown-opacity": "rgba(54, 37, 26, 0.75)", // Aggiunta di un nuovo colore con opacità
-      "custom-brown-dark": "rgba(54, 37, 26, 1)",
-      "custom-brown-medium": "rgb(180, 83, 9)",
-      "custom-brown-light": "rgba(122, 94, 75, 1)",
-    },
-    boxShadow: {
-      top: "0 -5px 10px -5px rgba(0, 0, 0, 0.25)",
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  theme: {
+    extend: {
+      colors: {
+        ink: "#120e0b",
+        surface: "#1a1410",
+        card: "#231a14",
+        line: "rgba(243, 233, 216, 0.1)",
+        gold: { DEFAULT: "#d4a24c", soft: "#e8c27a", deep: "#a87a2c" },
+        cream: "#f3e9d8",
+        muted: "#b9a998",
+      },
+      fontFamily: {
+        display: ['"Cormorant Garamond"', "Georgia", "serif"],
+        sans: ['"Inter"', "system-ui", "sans-serif"],
+      },
+      boxShadow: {
+        glow: "0 20px 60px -20px rgba(212, 162, 76, 0.35)",
+      },
     },
   },
+  plugins: [],
 };
-
-export const plugins = [];

@@ -1,111 +1,85 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import NavBarMobile from "../components/NavBarMobile";
-import Content from "../components/Content";
-import ContentMobile from "../components/ContentMobile";
-import Footer from "../components/Footer";
-import Contact from "../components/Contact";
-import { motion } from "framer-motion";
-import Slider from "react-slick";
-import { useLanguage } from "../hook/LanguagesContext";
+import { Link } from "react-router-dom";
+import Hero from "../components/Hero";
+import Reveal from "../components/Reveal";
+import TruffleGrid from "../components/TruffleGrid";
+import ContactLinks from "../components/ContactLinks";
+import ContactForm from "../components/ContactForm";
+import { useLanguage } from "../context/LanguageContext";
+
 const Home = () => {
-  const { language } = useLanguage();
-  // Opzioni per l'animazione
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.3, // Incrementa il ritardo per ogni elemento
-        duration: 0.5,
-      },
-    }),
-  };
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false, // Disabilita le frecce di navigazione
-  };
+  const { t } = useLanguage();
 
   return (
-    <div className="h-full w-full colored-background">
-      <div>
-        <NavBar current={"/"} />
-      </div>
-      <div className="block md:hidden z-10 fixed w-full bg-custom-brown-dark">
-        <NavBarMobile current={"/"} />
-      </div>
+    <>
+      <Hero />
 
-      <div className="flex flex-row justify-center">
-        <Slider {...settings} className="pt-28  w-full md:w-full md:pt-0 mb-7">
-          <div>
-            <img
-              src="../img/img1.png"
-              alt="immagine prova"
-              className="w-full  h-[400px] md:h-screen"
-            />
+      <section className="container-x -mt-10 relative z-10">
+        <Reveal>
+          <div className="card grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {t.highlights.map((h) => (
+              <div key={h.label} className="px-6 py-8 text-center">
+                <p className="font-display text-4xl font-semibold text-gold">{h.value}</p>
+                <p className="mt-1 text-sm text-muted">{h.label}</p>
+              </div>
+            ))}
           </div>
-          <div>
-            <img
-              src="../img/img2.jpg"
-              alt="immagine prova"
-              className="w-full h-[400px] md:h-screen"
-            />
-          </div>
-          <div>
-            <img
-              src="../img/img5.png"
-              alt="immagine prova"
-              className="w-full h-[400px] md:h-screen"
-            />
-          </div>
-          <div>
-            <img
-              src="../img/img7.jpg"
-              alt="immagine prova"
-              className="w-full h-[400px] md:h-screen"
-            />
-          </div>
-          {/* <div>
-            <video muted className="w-full h-[400px] md:h-screen">
-              <source src={videoCaccia} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div> */}
-        </Slider>
-      </div>
+        </Reveal>
+      </section>
 
-      <div className="hidden md:block">
-        <Content />
-      </div>
-      <div className="block md:hidden">
-        <ContentMobile />
-      </div>
+      <section className="container-x grid items-center gap-12 py-24 md:grid-cols-2 md:gap-16 md:py-32">
+        <Reveal>
+          <div className="relative">
+            <img src="/img/img4.jpg" alt={t.experience.title} loading="lazy" className="aspect-[4/5] w-full rounded-3xl object-cover shadow-2xl" />
+            <div className="pointer-events-none absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-3xl border border-gold/30" />
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="eyebrow mb-4">{t.experience.eyebrow}</p>
+          <h2 className="section-title">{t.experience.title}</h2>
+          <p className="mt-6 text-lg leading-relaxed text-muted">{t.experience.text}</p>
+          <Link to="/booked" className="btn-primary mt-8">{t.experience.cta}</Link>
+        </Reveal>
+      </section>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }} // Animazione solo la prima volta che entra in vista
-        className=" py-10">
-        <h1 className="text-white text-4xl text-center py-4">
-          {" "}
-          {language === "it" ? "CONTATTACI" : "CONTACT US"}
-        </h1>
-        <div className="flex flex-row justify-center">
-          <Contact />
+      <section className="bg-surface py-24 md:py-28">
+        <div className="container-x">
+          <Reveal className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="eyebrow mb-4">{t.shop.eyebrow}</p>
+            <h2 className="section-title">{t.shop.title}</h2>
+            <p className="mt-5 text-lg text-muted">{t.shop.text}</p>
+          </Reveal>
+          <TruffleGrid />
         </div>
-      </motion.div>
-      <div className="shadow-top mt-10 flex flex-col justify-center h-52">
-        <Footer />
-      </div>
-    </div>
+      </section>
+
+      <section className="container-x grid items-center gap-12 py-24 md:grid-cols-2 md:gap-16 md:py-32">
+        <Reveal className="md:order-2">
+          <div className="relative">
+            <img src="/img/img3.jpg" alt={t.story.title} loading="lazy" className="aspect-[4/5] w-full rounded-3xl object-cover shadow-2xl" />
+            <div className="pointer-events-none absolute -bottom-4 -left-4 -z-10 h-full w-full rounded-3xl border border-gold/30" />
+          </div>
+        </Reveal>
+        <Reveal delay={0.1} className="md:order-1">
+          <p className="eyebrow mb-4">{t.story.eyebrow}</p>
+          <h2 className="section-title">{t.story.title}</h2>
+          <p className="mt-6 text-lg leading-relaxed text-muted">{t.story.text}</p>
+          <Link to="/about" className="btn-ghost mt-8">{t.story.cta}</Link>
+        </Reveal>
+      </section>
+
+      <section className="container-x pb-8">
+        <Reveal className="mx-auto mb-10 max-w-2xl text-center">
+          <p className="eyebrow mb-4">{t.contact.eyebrow}</p>
+          <h2 className="section-title">{t.contact.title}</h2>
+          <p className="mt-5 text-lg text-muted">{t.contact.text}</p>
+        </Reveal>
+        <Reveal>
+          <ContactLinks />
+          <ContactForm />
+        </Reveal>
+      </section>
+    </>
   );
 };
 
