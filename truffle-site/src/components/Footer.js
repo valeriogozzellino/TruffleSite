@@ -1,106 +1,72 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faPhone,
-  faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
-import { useLanguage } from "../hook/LanguagesContext";
+import { faEnvelope, faPhone, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { EMAIL, PHONE_HREF, PHONE_LABEL, INSTAGRAM_URL, INSTAGRAM_HANDLE, MAPS_URL } from "../data/contacts";
+import { useLanguage } from "../context/LanguageContext";
+
 const Footer = () => {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
+  const links = [
+    { to: "/booked", label: t.nav.hunt },
+    { to: "/shop", label: t.nav.shop },
+    { to: "/about", label: t.nav.about },
+    { to: "/contact", label: t.nav.contact },
+  ];
+  const contacts = [
+    { href: `mailto:${EMAIL}`, icon: faEnvelope, label: EMAIL },
+    { href: INSTAGRAM_URL, icon: faInstagram, label: `@${INSTAGRAM_HANDLE}`, external: true },
+    { href: PHONE_HREF, icon: faPhone, label: PHONE_LABEL },
+    { href: MAPS_URL, icon: faLocationDot, label: "Langhe · Monferrato", external: true },
+  ];
 
   return (
-    <div className="w-full h-40 text-xs md:text-base colored-background flex flex-row justify-center items-center">
-      <div id="sezAzienda" className="w-1/3 h-full flex flex-col items-center ">
-        <h1 className="text-white text-xl py-2">
-          {" "}
-          <b>MiloTruffle</b>
-        </h1>
-        <p
-          className={`overflow-auto h-30 text-white m-2 custom-scroll`}
-          style={{ transition: "height 0.5s ease" }}>
-          {language === "it"
-            ? "Simone Gulino e Giulia Canton sono una coppia appassionata di tartufi. Insieme ai loro due fedeli cani, Milo e Stella, si dedicano alla ricerca di tartufi nelle rigogliose campagne italiane. Simone e Giulia non solo cercano tartufi per passione, ma offrono anche esperienze guidate, permettendo agli entusiasti di esplorare il mondo affascinante della tartuficoltura insieme a loro."
-            : "Simone Gulino and Giulia Canton are a couple passionate about truffle hunting. Together with their two loyal dogs, Milo and Stella, they search for truffles in the lush Italian countryside. Simone and Giulia do not only hunt truffles out of passion, but they also offer guided experiences, allowing enthusiasts to delve into the fascinating world of truffle hunting alongside them."}
-        </p>
+    <footer className="mt-24 border-t border-line bg-surface">
+      <div className="container-x grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <div className="mb-4 flex items-center gap-3">
+            <img src="/img/logoTruffle2.png" alt="" className="h-12 w-12 object-contain" />
+            <span className="font-display text-2xl font-semibold">
+              Milo's <span className="text-gold">Truffle</span>
+            </span>
+          </div>
+          <p className="max-w-md text-sm leading-relaxed text-muted">{t.footer.about}</p>
+        </div>
+        <div>
+          <h3 className="eyebrow mb-5 !font-sans">{t.footer.links}</h3>
+          <ul className="space-y-3 text-sm">
+            {links.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="text-cream/80 transition hover:text-gold">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="eyebrow mb-5 !font-sans">{t.footer.contacts}</h3>
+          <ul className="space-y-3 text-sm">
+            {contacts.map((c) => (
+              <li key={c.href}>
+                <a
+                  href={c.href}
+                  {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="flex items-center gap-3 text-cream/80 transition hover:text-gold">
+                  <FontAwesomeIcon icon={c.icon} className="w-4 text-gold" />
+                  {c.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div
-        id="sezLink"
-        className="w-1/3 h-full flex flex-col justify-stretch items-center">
-        <h1 className="text-white text-xl py-2  ">
-          <b>{language === "it" ? "Link Utili" : "Useful Links"}</b>
-        </h1>
-        <motion.button
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.8 }}
-          className="py-2">
-          <a href="/about" className="text-white hover:underline py-2">
-            <b>{language === "it" ? "La nostra storia" : "our story"}</b>
-          </a>
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.8 }}
-          className="py-2">
-          <a href="/contact" className="text-white hover:underline py-2">
-            <b>{language === "it" ? "Contatti" : "Contact"}</b>
-          </a>
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.8 }}
-          className="py-2">
-          <a href="/shop" className="text-white hover:underline py-2">
-            <b>{language === "it" ? "Negozio" : "Shop"}</b>
-          </a>
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.8 }}
-          className="py-2">
-          <a href="/booked" className="text-white hover:underline py-2">
-            <b>{language === "it" ? "Caccia al Tartufo" : "Truffle Hunting"}</b>
-          </a>
-        </motion.button>
+      <div className="border-t border-line py-6 text-center text-xs text-muted">
+        © {new Date().getFullYear()} Milo's Truffle · {t.footer.rights}
       </div>
-      <div id="sezContatti" className="w-1/3 h-full flex flex-col items-center">
-        <p className="text-white text-xl py-2">
-          <b>{language === "it" ? "Contattaci" : "Contact Us"}</b>
-        </p>
-        <motion.button
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.8 }}
-          className="py-2">
-          <a
-            href="mailto:miloTruffle10@gmail.com"
-            className="text-white text-xl">
-            <FontAwesomeIcon icon={faEnvelope} />
-          </a>
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.8 }}
-          className="py-2">
-          <a href="tel:+393355490474" className="text-white  text-xl">
-            <FontAwesomeIcon icon={faPhone} />{" "}
-            {/* {language === "it" ? "Telefono" : "Phone"} */}
-          </a>
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.3 }}
-          whileTap={{ scale: 0.8 }}
-          className="py-2">
-          <a
-            href="https://maps.app.goo.gl/wCfjE4nRKsbncEGH9?g_st=com.google.maps.preview.copy"
-            className="text-white text-xl"
-            target="_blank"
-            rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faLocationDot} />
-          </a>
-        </motion.button>
-      </div>
-    </div>
+    </footer>
   );
 };
+
 export default Footer;

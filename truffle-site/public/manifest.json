@@ -1,6 +1,6 @@
 {
   "short_name": "Milo Truffle",
-  "name": "Milo's Truffle Hounting",
+  "name": "Milo's Truffle Hunting",
   "icons": [
     {
       "src": "logoTruffle.png",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#120e0b",
+  "background_color": "#120e0b"
 }

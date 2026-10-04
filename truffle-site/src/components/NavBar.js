@@ -1,89 +1,123 @@
-import React, { useState, useEffect } from "react";
-import Logo from "../img/logoTruffle2.png";
-import { useScrollDirection } from "../hook/UseScroollDirection";
-import { useLanguage } from "../hook/LanguagesContext";
-const NavBar = ({ current }) => {
-  const scrollDirection = useScrollDirection();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const { language, toggleLanguage } = useLanguage(); // Usa toggleLanguage dal contesto
-  const handleNavigation = (root) => {
-    window.location.href = root;
-  };
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useLanguage } from "../context/LanguageContext";
 
-  const handleScroll = () => {
-    const offset = window.pageYOffset;
-    setIsScrolled(offset < 750);
-  };
+const NavBar = () => {
+  const { language, toggleLanguage, t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const links = [
+    { to: "/booked", label: t.nav.hunt },
+    { to: "/shop", label: t.nav.shop },
+    { to: "/about", label: t.nav.about },
+    { to: "/contact", label: t.nav.contact },
+  ];
+
+  const linkClass = ({ isActive }) =>
+    `relative text-sm font-medium uppercase tracking-widest transition-colors hover:text-gold ${
+      isActive ? "text-gold" : "text-cream/85"
+    }`;
+
+  const LangButton = () => (
+    <button
+      onClick={toggleLanguage}
+      aria-label={language === "it" ? "Switch to English" : "Passa all'italiano"}
+      className="rounded-full border border-cream/25 px-3 py-1.5 text-xs font-semibold tracking-widest text-cream transition hover:border-gold hover:text-gold">
+      <span className={language === "it" ? "text-gold" : "opacity-60"}>IT</span>
+      <span className="mx-1 opacity-40">/</span>
+      <span className={language === "en" ? "text-gold" : "opacity-60"}>EN</span>
+    </button>
+  );
+
   return (
-    <div
-      className={`fixed top-0 w-full z-10 transition-transform duration-300 ${
-        scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
-      } `}>
-      <div
-        className={`w-full hidden sm:flex h-28 flex-row justify-between shadow py-5 ${
-          isScrolled ? "bg-custom-brown-opacity" : "bg-custom-brown-dark"
-        }`}>
-        <div className="w-auto h-auto">
-          <img
-            onClick={() => handleNavigation("/")}
-            src={Logo}
-            alt="Logo"
-            className="w-[80px] h-[70px] ml-5 mb-3"
-          />
-        </div>
-        <div className="text-white flex flex-row justify-center font-libre">
-          <span
-            className={`flex flex-col justify-center m-5 text-2xl hover:underline hover:-translate-y-1 ${
-              current === "/booked" ? "underline" : ""
-            }`}
-            onClick={() => handleNavigation("/booked")}>
-            {language === "it" ? "CACCIA AL TARTUFO" : "TRUFFLE HUNT"}
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled || open
+          ? "border-b border-line bg-ink/80 py-2 backdrop-blur-xl"
+          : "bg-gradient-to-b from-ink/70 to-transparent py-4"
+      }`}>
+      <div className="container-x flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-3" aria-label="Milo's Truffle">
+          <img src="/img/logoTruffle2.png" alt="" className="h-12 w-12 object-contain" />
+          <span className="font-display text-2xl font-semibold tracking-wide text-cream">
+            Milo's <span className="text-gold">Truffle</span>
           </span>
-          <span
-            className={`flex flex-col justify-center m-5 text-2xl hover:underline hover:-translate-y-1 ${
-              current === "/shop" ? "underline" : ""
-            }`}
-            onClick={() => handleNavigation("/shop")}>
-            {language === "it" ? "NEGOZIO" : "SHOP"}
-          </span>
-          <span
-            className={`flex flex-col justify-center m-5 text-2xl hover:underline hover:-translate-y-1 ${
-              current === "/about" ? "underline" : ""
-            }`}
-            onClick={() => handleNavigation("/about")}>
-            {language === "it" ? "CHI SIAMO" : "ABOUT"}
-          </span>
-          <span
-            className={`flex flex-col justify-center m-5 text-2xl hover:underline hover:-translate-y-1 ${
-              current === "/contact" ? "underline" : ""
-            }`}
-            onClick={() => handleNavigation("/contact")}>
-            {language === "it" ? "CONTATTI" : "CONTACT"}
-          </span>
-          <span
-            className={`flex flex-col justify-center m-5 hover:underline hover:-translate-y-1 ${
-              current === "/contact" ? "underline" : ""
-            }`}
-            onClick={toggleLanguage}>
-            <div className="h-[30px] w-[30px]">
-              {language === "en" ? (
-                <img src="../img/FlagItaly.svg" alt="italy flag" />
-              ) : (
-                <img src="../img/englandFlag.svg" alt="england flag" />
-              )}
-            </div>
-          </span>
+        </Link>
+
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Principale">
+          {links.map((l) => (
+            <NavLink key={l.to} to={l.to} className={linkClass}>
+              {l.label}
+            </NavLink>
+          ))}
+          <LangButton />
+          <Link to="/booked" className="btn-primary !px-5 !py-2.5">
+            {t.nav.book}
+          </Link>
+        </nav>
+
+        <div className="flex items-center gap-3 md:hidden">
+          <LangButton />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Menu"
+            aria-expanded={open}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/25 text-cream">
+            <FontAwesomeIcon icon={open ? faXmark : faBars} />
+          </button>
         </div>
       </div>
-    </div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "100vh" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden md:hidden"
+            aria-label="Mobile">
+            <ul className="container-x flex flex-col gap-2 pt-8">
+              {[{ to: "/", label: t.nav.home }, ...links].map((l) => (
+                <li key={l.to}>
+                  <NavLink
+                    to={l.to}
+                    end
+                    className={({ isActive }) =>
+                      `block border-b border-line py-4 font-display text-3xl ${
+                        isActive ? "text-gold" : "text-cream"
+                      }`
+                    }>
+                    {l.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 

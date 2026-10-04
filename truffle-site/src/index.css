@@ -1,127 +1,75 @@
-@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-}
-
-body,
-html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  font-family: Arial, sans-serif; /* Default font */
-}
-
-/* Aggiungi questa regola per applicare il font globalmente */
-body {
-  font-family: "Libre Caslon Text", serif;
-  background-color: rgba(54, 37, 26, 1);
-}
-
-/* Classe per applicare il font Libre Caslon Text */
-.font-libre {
-  font-family: "Libre Caslon Text", serif;
-}
-
-h1 {
-  text-align: center;
-}
-
-p {
-  text-align: center;
-}
-
-.colored-background {
-  background-color: rgba(54, 37, 26, 1);
-}
-.colored-background-light {
-  background-color: rgba(122, 94, 75, 1);
-}
-.stile-hover {
-  background-color: rgba(157, 132, 104, 1);
-}
-
-/* Aumento della specificità del selettore */
-.slick-slider .slick-dots li button:before {
-  color: white;
-  font-size: 8px;
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.slick-slider {
-  max-width: 100%; /* Impedisce che il carosello superi la larghezza del viewport */
-}
-
-.slick-list {
-  padding: 0 !important; /* Rimuove padding che potrebbe causare problemi */
-}
-
-/** Animazione sfondo in movimento */
-.bkImageShop {
-  background-image: url("../public/img/boscolombardia.jpg");
-  background-size: 100% 100%; /* Inizia con dimensioni normali */
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  animation: pulseBackground 6s infinite ease-in-out;
-}
-/***/
-@keyframes pulseBackground {
-  0%,
-  100% {
-    background-size: 100% 100%;
-    opacity: 0.8;
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  50% {
-    background-size: 102% 102%; /* Leggero aumento delle dimensioni per un effetto sottile */
-    opacity: 0.9;
+  body {
+    @apply bg-ink font-sans text-cream antialiased;
+    margin: 0;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+  ::selection {
+    background: rgba(212, 162, 76, 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid #d4a24c;
+    outline-offset: 3px;
   }
 }
 
-/**testo in foreground */
-.outlined-title {
-  color: #e5b713; /* Colore del testo, qui è un arancione (tailwind text-orange-300) */
-  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000; /* Ogni valore aggiunge un'ombra in una direzione diversa */
-}
-.outlined-text {
-  color: #fdfdfd; /* Colore del testo, qui è un arancione (tailwind text-orange-300) */
-  /* text-shadow: -0.5px -0.5px 0 #ece7e7, 0.5px -0.5px 0 #ffffff,
-    -0.5px 0.5px 0 #ffffff, 0.5px 0.5px 0 #ffffff; Ogni valore aggiunge un'ombra in una direzione diversa */
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.3em] text-gold;
+  }
+  .section-title {
+    @apply font-display text-4xl font-semibold leading-tight text-cream md:text-5xl;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-semibold uppercase tracking-wider transition duration-300 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-gold text-ink hover:-translate-y-0.5 hover:bg-gold-soft hover:shadow-glow;
+  }
+  .btn-ghost {
+    @apply btn border border-cream/30 text-cream hover:border-gold hover:text-gold;
+  }
+  .field-label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-ink/60 px-4 py-3 text-cream placeholder-muted/50 transition focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold;
+  }
+  .card {
+    @apply rounded-3xl border border-line bg-card;
+  }
 }
 
-/*opacity  background degli elementi truffle item
-*/
-/* .opacity-90-bg {
-  background: #000;
-  opacity: 0.5;
-} */
-
-/*
-barra overflow
-*/
-/* Personalizza la barra di scorrimento verticale */
 ::-webkit-scrollbar {
-  width: 10px; /* Larghezza della barra di scorrimento */
+  width: 10px;
 }
-
-/* Traccia della barra di scorrimento */
 ::-webkit-scrollbar-track {
-  background: #f1f1f169; /* Colore di sfondo della traccia */
+  background: #120e0b;
 }
-
-/* Maniglia della barra di scorrimento */
 ::-webkit-scrollbar-thumb {
-  background: rgba(122, 94, 75, 1); /* Colore della maniglia */
-  border-radius: 5px; /* Angoli arrotondati */
+  background: #3a2d23;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4a24c;
 }
 
-/* Hover sulla maniglia della barra di scorrimento */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Colore della maniglia quando si passa sopra con il mouse */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

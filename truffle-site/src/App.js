@@ -1,24 +1,26 @@
-import "./App.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { LanguageProvider } from "./context/LanguageContext";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import Booked from "./pages/Booked";
 import Shop from "./pages/Shop";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
-import { LanguageProvider } from "./hook/LanguagesContext";
+import Booked from "./pages/Booked";
+import NotFound from "./pages/NotFound";
+
 function App() {
   return (
     <LanguageProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/booked" element={<Booked />} />
-          <Route path="*" element={<h1>Page not found</h1>} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/booked" element={<Booked />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </LanguageProvider>
